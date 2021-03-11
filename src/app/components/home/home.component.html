@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <mat-card class="textbox-one">
+                <mat-card-header class="mb-2 text-center">
+                    <mat-card-title>
+                        De Nieuwe GRZPLUS app.
+                    </mat-card-title>
+
+                </mat-card-header>
+                <mat-card-content class="text-center">
+                    <hr />
+                    <p class="actual-text">
+                        Ontwikkelingen voor de nieuwe GRZPLUS app zijn in volle gang. Studenten Jeroen, Rebekka, Tess,
+                        Rens en Denise van de minor ZorgTechnologie aan de Hogeschool van Amsterdam werken graag samen
+                        met u om de app te verbeteren.
+                    </p>
+                    <hr/>
+                </mat-card-content>
+                <mat-card-footer class="text-right custom-card-footer">
+                    <mat-icon class="arrow">keyboard_arrow_right</mat-icon>
+                    <a class="footer-text"
+                        href="https://www.flaticon.com/svg/vstatic/svg/1000/1000997.svg?token=exp=1615391210~hmac=63362c19c99453ef908ea78950056cfb">Lees
+                        meer</a>
+                </mat-card-footer>
+            </mat-card>
+        </div>
+        <div class="col-md-6">
+            <mat-card class="login-card">
+                <mat-card-header>
+                    <span mat-card-avatar class="material-icons">
+                        login
+                    </span>
+                    <mat-card-title>Inloggen</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <hr />
+                    <p>Log met uw account in om toegang te krijgen tot de website.</p>
+                    <form [formGroup]="loginGroup">
+                        <br />
+                        <div class="text-center">
+                            <mat-form-field appearance="outline" class="ml-2" color="accent">
+                                <mat-label>e-mail adres</mat-label>
+                                <input matInput formControlName="email" required>
+                                <!-- <mat-error *ngIf="form.length.invalid">Vul een lengte in</mat-error> -->
+                            </mat-form-field>
+                            <br />
+                            <mat-form-field appearance="outline" class="ml-2" color="accent">
+                                <mat-label>wachtwoord</mat-label>
+                                <input matInput formControlName="password" type="password" required>
+                                <!-- <mat-error *ngIf="form.length.invalid">Vul een lengte in</mat-error> -->
+                            </mat-form-field>
+                        </div>
+                        <br />
+                        <div class="text-right">
+                            <button mat-raised-button type="submit" (click)="login()">Log in</button>
+
+                        </div>
+                    </form>
+                </mat-card-content>
+
+            </mat-card>
+
+        </div>
+
+    </div>
+</div>
