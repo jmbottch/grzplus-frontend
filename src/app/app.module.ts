@@ -57,13 +57,21 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegisterComponent } from './components/register/register.component';
 import { TokenInterceptorService } from './services/token/token-interceptor.service';
+import { AdminDashboardComponent } from './components/dashboard/admin-dashboard/admin-dashboard.component';
+import { PsychoDashboardComponent } from './components/dashboard/psycho-dashboard/psycho-dashboard.component';
+import { ErgoDashboardComponent } from './components/dashboard/ergo-dashboard/ergo-dashboard.component';
+import { DoctorDashboardComponent } from './components/dashboard/doctor-dashboard/doctor-dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     HomeComponent,
     DashboardComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminDashboardComponent,
+    PsychoDashboardComponent,
+    ErgoDashboardComponent,
+    DoctorDashboardComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -116,13 +124,13 @@ import { TokenInterceptorService } from './services/token/token-interceptor.serv
     PortalModule,
     ScrollingModule
   ],
-  providers: [AuthService],
+  providers: [AuthService  , {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+}],
   bootstrap: [AppComponent]
   
-//   , {
-//     provide: HTTP_INTERCEPTORS,
-//     useClass: TokenInterceptorService,
-//     multi: true
-// }
+
 })
 export class AppModule { }

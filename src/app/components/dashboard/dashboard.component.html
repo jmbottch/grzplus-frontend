@@ -1,78 +1,15 @@
+
 <div class="container">
-    <div class="row">
-        <div class="col-md-5" >
-            <mat-card style="background: whitesmoke;">
-                <mat-card-header>
-                    <mat-card-title>
-                        Title
-                    </mat-card-title>
-                </mat-card-header>
-                <mat-card-content style="height: 215px; ">
-                    <hr/>
-
-                    <h1>Content</h1>
-                </mat-card-content>
-                <mat-card-footer>
-                    <hr/>
-                    <h4>footer</h4>
-                </mat-card-footer>
-            </mat-card>
-        </div>
-        <div class="col-md-4" >
-            <mat-card style="background: whitesmoke; display:none">
-                <mat-card-header>
-                    <mat-card-title>
-                        Title
-                    </mat-card-title>
-                </mat-card-header>
-                <mat-card-content style="height: 215px; ">
-                    <hr/>
-
-                    <h1>Content</h1>
-                </mat-card-content>
-                <mat-card-footer>
-                    <hr/>
-                    <h4>footer</h4>
-                </mat-card-footer>
-            </mat-card>
-        </div>
-        <div class="col-md-3" >
-            <mat-card style="background: whitesmoke;">
-                <mat-card-header>
-                    <mat-card-title>
-                        Title
-                    </mat-card-title>
-                </mat-card-header>
-                <mat-card-content style="height: 215px; ">
-                    <hr/>
-
-                    <h1>Content</h1>
-                </mat-card-content>
-                <mat-card-footer>
-                    <hr/>
-                    <h4>footer</h4>
-                </mat-card-footer>
-            </mat-card>
-        </div>
-    </div>
-    <div class="row mt-3">
-        <div class="col-md-12" >
-            <mat-card style="background: whitesmoke;">
-                <mat-card-header>
-                    <mat-card-title>
-                        Title
-                    </mat-card-title>
-                </mat-card-header>
-                <mat-card-content style="height: 150px; ">
-                    <hr/>
-
-                    <h1>Content</h1>
-                </mat-card-content>
-                <mat-card-footer>
-                    <hr/>
-                    <h4>footer</h4>
-                </mat-card-footer>
-            </mat-card>
-        </div>
-    </div>
+    <mat-card style="background-color: whitesmoke;">
+        <mat-card-header>
+            <mat-card-title>{{user.role}}: {{user.firstName}} {{user.lastName}}</mat-card-title>
+        </mat-card-header>
+        <hr/>
+    </mat-card>
+</div>
+<div class="mt-2">
+    <app-admin-dashboard *ngIf="user.role == 'Administrator'"></app-admin-dashboard>
+    <app-psycho-dashboard *ngIf="user.role == 'Psycholoog'"></app-psycho-dashboard>
+    <app-ergo-dashboard *ngIf="user.role == 'Ergotherapeut'"></app-ergo-dashboard>
+    <app-doctor-dashboard *ngIf="user.role == 'Arts'"></app-doctor-dashboard>
 </div>

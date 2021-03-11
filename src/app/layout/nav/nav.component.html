@@ -1,9 +1,16 @@
 <mat-toolbar class="app-toolbar">
-    <div class="container">
-        <img class="toolbar-logo" src="https://grzplus.nl/wp-content/themes/grzplus/img/logo-grzplus.svg">
-       
-        <button mat-raised-button class="default float-right" routerLink="/register">Registreren</button> 
-    </div>
+
+    <img class="toolbar-logo mr-2" src="https://grzplus.nl/wp-content/themes/grzplus/img/logo-grzplus.svg"
+        routerLink="/home">
+
+    <mat-divider [vertical]="true" class="main-divider"></mat-divider>
+
+    <button mat-button *ngIf="loggedIn()" routerLink="/dashboard">Dashboard</button>
+    <mat-divider [vertical]="true" class="button-divider"></mat-divider>
+    <span class="example-spacer"></span>
+    <button mat-button *ngIf="loggedIn()" routerLink="/home">Uitloggen</button>
+
+
 
     <!-- <div class="vl"></div>
     <button mat-button class="default" routerLink="/algemeen">Algemeen</button>

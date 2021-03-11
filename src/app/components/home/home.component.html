@@ -15,11 +15,11 @@
                         Rens en Denise van de minor ZorgTechnologie aan de Hogeschool van Amsterdam werken graag samen
                         met u om de app te verbeteren.
                     </p>
-                    <hr/>
+                    <hr />
                 </mat-card-content>
                 <mat-card-footer class="text-right custom-card-footer">
                     <mat-icon class="arrow">keyboard_arrow_right</mat-icon>
-                    <a class="footer-text"
+                    <a class="footer-text mr-3"
                         href="https://www.flaticon.com/svg/vstatic/svg/1000/1000997.svg?token=exp=1615391210~hmac=63362c19c99453ef908ea78950056cfb">Lees
                         meer</a>
                 </mat-card-footer>
@@ -27,25 +27,31 @@
         </div>
         <div class="col-md-6">
             <mat-card class="login-card">
-                <mat-card-header>
+                <mat-card-header *ngIf="!loggedIn()">
                     <span mat-card-avatar class="material-icons">
                         login
                     </span>
                     <mat-card-title>Inloggen</mat-card-title>
                 </mat-card-header>
-                <mat-card-content>
+                <mat-card-header *ngIf="loggedIn()">
+                    <span mat-card-avatar class="material-icons">
+                        logout
+                    </span>
+                    <mat-card-title *ngIf="loggedIn()">Uitloggen</mat-card-title>
+                </mat-card-header>
+                <mat-card-content *ngIf="!loggedIn()">
                     <hr />
                     <p>Log met uw account in om toegang te krijgen tot de website.</p>
                     <form [formGroup]="loginGroup">
                         <br />
                         <div class="text-center">
-                            <mat-form-field appearance="outline" class="ml-2" color="accent">
+                            <mat-form-field appearance="outline" class="ml-2">
                                 <mat-label>e-mail adres</mat-label>
                                 <input matInput formControlName="email" required>
                                 <!-- <mat-error *ngIf="form.length.invalid">Vul een lengte in</mat-error> -->
                             </mat-form-field>
                             <br />
-                            <mat-form-field appearance="outline" class="ml-2" color="accent">
+                            <mat-form-field appearance="outline" class="ml-2">
                                 <mat-label>wachtwoord</mat-label>
                                 <input matInput formControlName="password" type="password" required>
                                 <!-- <mat-error *ngIf="form.length.invalid">Vul een lengte in</mat-error> -->
@@ -57,6 +63,10 @@
 
                         </div>
                     </form>
+                </mat-card-content>
+                <mat-card-content *ngIf="loggedIn()">
+                    <hr/>
+                    <button mat-raised-button class="logout-button" (click)="logout()">Klik hier om uit te loggen</button>
                 </mat-card-content>
 
             </mat-card>

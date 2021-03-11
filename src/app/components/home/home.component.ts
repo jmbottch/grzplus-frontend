@@ -29,13 +29,20 @@ export class HomeComponent implements OnInit {
     .subscribe(
       res => {
         localStorage.setItem('token', res.token)
-        console.log(res.token)
         this._router.navigate(['/dashboard']);
       },
       err => {
         console.log(err)
       }
     )
+  }
+
+  loggedIn() {
+    return this._auth.loggedIn();
+  }
+
+  logout() {
+    return this._auth.logout();
   }
 
 }

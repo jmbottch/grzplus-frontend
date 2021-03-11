@@ -27,6 +27,6 @@
     "strictInputAccessModifiers": false,
     "strictTemplates": true,    
     "fullTemplateTypeCheck": true,
-    "noImplicitAny": false
+    "noImplicitAny": true
   }
 }
