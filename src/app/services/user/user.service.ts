@@ -11,6 +11,14 @@ export class UserService {
 
   constructor(private http: HttpClient, private _router: Router) { }
 
+  getAll() {
+    return this.http.get<any>(this._users)
+  }
+
+  register(user: any) {
+    return this.http.post<any>(this._users, user)
+  }
+
   getSingle(id: any) {
     return this.http.get<any>(this._users + '/' + id)
   }

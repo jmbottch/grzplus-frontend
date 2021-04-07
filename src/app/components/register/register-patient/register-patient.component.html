@@ -1,0 +1,97 @@
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-md-12">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>
+                        Nieuwe Revalidant
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <hr />
+                    <form [formGroup]="registerGroup">
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <mat-card-subtitle>Persoonsgegevens</mat-card-subtitle>
+                                <!-- firstName -->
+                                <mat-form-field appearance="outline" class="ml-2">
+                                    <mat-label>Voornaam</mat-label>
+                                    <input matInput formControlName="firstName" required>
+                                </mat-form-field>
+                                <!-- lastName -->
+                                <mat-form-field appearance="outline" class="ml-2">
+                                    <mat-label>Achternaam</mat-label>
+                                    <input matInput formControlName="lastName" required>
+                                </mat-form-field>
+                                <!-- dateOfBirth -->
+                                <mat-form-field appearance="outline" class="ml-2">
+                                    <mat-label>Geboortedatum</mat-label>
+                                    <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                                <mat-card-subtitle>Inloggegevens</mat-card-subtitle>
+                                <!-- email -->
+                                <mat-form-field appearance="outline" class="ml-2">
+                                    <mat-label>E-mail adres</mat-label>
+                                    <input matInput formControlName="email" required>
+                                </mat-form-field>
+                                <br />
+                                <!-- password -->
+                                <mat-form-field appearance="outline" class="ml-2">
+                                    <mat-label>Wachtwoord</mat-label>
+                                    <input matInput formControlName="password" type="password" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                                <mat-card-subtitle>Praktische info</mat-card-subtitle>
+                                <!-- practitioners -->
+                                <mat-form-field appearance="outline" class="ml-2">
+                                    <mat-label>Behandelaren</mat-label>
+                                    <mat-select placeholder="Selecteer een behandelaar." formControlName="practitioners"
+                                        required>
+                                        <mat-option *ngFor="let pract of practitioners" matInput [value]="pract">
+                                            {{pract.role}}: {{pract.firstName}} {{pract.lastName}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <!-- resuscitation -->
+                                <mat-form-field appearance="outline" class="ml-2">
+                                    <mat-label>Reanimatiebeleid</mat-label>
+                                    <mat-select placeholder="Selecteer een Reanimatiebeleid."
+                                        formControlName="resuscitation" required>
+                                        <mat-option *ngFor="let resus of resuscitations" matInput [value]="resus"
+                                            class="text-center">
+                                            <img src="{{resus.image}}" class="img-fluid heart" />
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <!-- dateOfDeparture -->
+                                <mat-form-field appearance="outline" class="ml-2">
+                                    <mat-label>Datum voorlopig ontslag</mat-label>
+                                    <input matInput [matDatepicker]="picker1" formControlName="dateOfDeparture">
+                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker1></mat-datepicker>
+                                </mat-form-field>
+                                <!-- roomNr -->
+                                <mat-form-field appearance="outline" class="ml-2">
+                                    <mat-label>Kamernummer</mat-label>
+                                    <input matInput formControlName="roomNr" type="string" required>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                    </form>
+                    <hr/>
+                </mat-card-content>
+                <mat-card-actions class="text-right">
+                    <button mat-raised-button type="submit" class="mb-2 mr-3" color="primary"
+                        (click)="register()">Opslaan</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

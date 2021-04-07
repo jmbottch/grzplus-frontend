@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+
 
 @Component({
   selector: 'app-home',
@@ -10,7 +12,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private fb : FormBuilder, private _auth : AuthService, private _router : Router) { }
+  constructor( private fb : FormBuilder, private _auth : AuthService, private _router : Router) { }
   loginGroup!: FormGroup;
   
   ngOnInit(): void {
@@ -28,7 +30,7 @@ export class HomeComponent implements OnInit {
     this._auth.login(this.loginGroup.value)
     .subscribe(
       res => {
-        localStorage.setItem('token', res.token)
+        localStorage.setItem('token', res.token)    
         this._router.navigate(['/dashboard']);
       },
       err => {

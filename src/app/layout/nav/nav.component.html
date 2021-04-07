@@ -5,12 +5,34 @@
 
     <mat-divider [vertical]="true" class="main-divider"></mat-divider>
 
-    <button mat-button *ngIf="loggedIn()" routerLink="/dashboard">Dashboard</button>
+    <!-- <button mat-button *ngIf="loggedIn()" routerLink="/dashboard">Dashboard</button> -->
     <mat-divider [vertical]="true" class="button-divider"></mat-divider>
     <span class="example-spacer"></span>
-    <button mat-button *ngIf="loggedIn()" routerLink="/home">Uitloggen</button>
 
-
+    
+    <!-- <button mat-button *ngIf="loggedIn()" (click)="logout()">Uitloggen</button> -->
+    <button *ngIf="loggedIn()" mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu-icon" class="text-center">
+        <mat-icon>more_vert</mat-icon></button>
+        <mat-menu #menu="matMenu">            
+            <button mat-menu-item routerLink="/dashboard">
+                <mat-icon>
+                    dashboard
+                </mat-icon>
+                <span>Dashboard</span>
+            </button>
+            <button *ngIf="usertype! == 'user'" mat-menu-item routerLink="/register">
+                <mat-icon>
+                    person_add
+                </mat-icon>
+                <span>Registreer</span>
+            </button>
+            <button mat-menu-item (click)="logout()">
+                <mat-icon>
+                    logout
+                </mat-icon>
+                <span>Uitloggen</span>
+            </button>
+        </mat-menu>
 
     <!-- <div class="vl"></div>
     <button mat-button class="default" routerLink="/algemeen">Algemeen</button>

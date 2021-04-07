@@ -57,10 +57,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegisterComponent } from './components/register/register.component';
 import { TokenInterceptorService } from './services/token/token-interceptor.service';
-import { AdminDashboardComponent } from './components/dashboard/admin-dashboard/admin-dashboard.component';
-import { PsychoDashboardComponent } from './components/dashboard/psycho-dashboard/psycho-dashboard.component';
-import { ErgoDashboardComponent } from './components/dashboard/ergo-dashboard/ergo-dashboard.component';
-import { DoctorDashboardComponent } from './components/dashboard/doctor-dashboard/doctor-dashboard.component';
+import { PatientService } from './services/patient/patient.service';
+import { RegisterUserComponent } from './components/register/register-user/register-user.component';
+import { RegisterPatientComponent } from './components/register/register-patient/register-patient.component';
+import { UserDashboardComponent } from './components/dashboard/user-dashboard/user-dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,10 +68,9 @@ import { DoctorDashboardComponent } from './components/dashboard/doctor-dashboar
     HomeComponent,
     DashboardComponent,
     RegisterComponent,
-    AdminDashboardComponent,
-    PsychoDashboardComponent,
-    ErgoDashboardComponent,
-    DoctorDashboardComponent
+    RegisterUserComponent,
+    RegisterPatientComponent,
+    UserDashboardComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -124,7 +123,7 @@ import { DoctorDashboardComponent } from './components/dashboard/doctor-dashboar
     PortalModule,
     ScrollingModule
   ],
-  providers: [AuthService  , {
+  providers: [AuthService, PatientService , {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true

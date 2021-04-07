@@ -1,0 +1,61 @@
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-md-12">
+            <mat-card style="background-color: whitesmoke;">
+                <form [formGroup]="registerGroup">
+                    <mat-card-header>
+                        <mat-card-title>Nieuwe Behandelaar</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-card-subtitle class="ml-2">Persoonsgegevens</mat-card-subtitle>
+                                <mat-form-field appearance="outline" class="ml-2">
+                                    <mat-label>Voornaam</mat-label>
+                                    <input matInput formControlName="firstName" required>
+                                    <!-- <mat-error *ngIf="form.length.invalid">Vul een lengte in</mat-error> -->
+                                </mat-form-field>
+                                <br />
+                                <mat-form-field appearance="outline" class="ml-2">
+                                    <mat-label>Achternaam</mat-label>
+                                    <input matInput formControlName="lastName" required>
+                                    <!-- <mat-error *ngIf="form.length.invalid">Vul een lengte in</mat-error> -->
+                                </mat-form-field>
+                                <br />
+                            </div>
+                            <div class="col-md-6">
+                                <mat-card-subtitle class="ml-2">Inlog gegevens</mat-card-subtitle>
+                                <mat-form-field appearance="outline" class="ml-2">
+                                    <mat-label>E-mail adres</mat-label>
+                                    <input matInput formControlName="email" required>
+                                    <!-- <mat-error *ngIf="form.length.invalid">Vul een lengte in</mat-error> -->
+                                </mat-form-field>
+                                <br />
+                                <mat-form-field appearance="outline" class="ml-2">
+                                    <mat-label>Wachtwoord</mat-label>
+                                    <input matInput formControlName="password" type="password" required>
+                                    <!-- <mat-error *ngIf="form.length.invalid">Vul een lengte in</mat-error> -->
+                                </mat-form-field>
+                                <br />
+                                <mat-form-field appearance="outline" class="ml-2">
+                                    <mat-label>Functie</mat-label>
+                                    <mat-select placeholder="Kies de functie van de gebruiker." formControlName="role"
+                                        required>
+                                        <mat-option *ngFor="let role of roles" matInput type="string" [value]="role">
+                                            {{role}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <hr />
+                    </mat-card-content>
+                    <mat-card-footer class="text-right">
+                        <button mat-raised-button type="submit" class="mb-2 mr-3" color="primary"
+                            (click)="register()">Opslaan</button>
+                    </mat-card-footer>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</div>

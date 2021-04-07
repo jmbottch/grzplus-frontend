@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { PatientService } from 'src/app/services/patient/patient.service';
+import { UserService } from 'src/app/services/user/user.service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-register',
@@ -10,42 +13,32 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  registerGroup!: FormGroup;
+  // registerGroup!: FormGroup;  
+  selectedForm! : FormGroup
+  selected! : string
 
   roles = [
-    "Client",
-    "Administrator",
-    "Psycholoog",
-    "Arts"
+    "Revalidant",
+    "Behandelaar",
+    "Mantelzorger"
   ]
   
-  constructor(private fb : FormBuilder, private _auth : AuthService, private _router : Router) { }
+  constructor(private fb : FormBuilder, private _auth : AuthService, private _router : Router, private _user : UserService, private _patient : PatientService) { }
 
   ngOnInit(): void {
-    this.registerGroup = this.fb.group({
-      email: ['',[Validators.required]],
-      firstName:['',[Validators.required]],
-      lastName:['', [Validators.required]],
-      password: ['',[Validators.required]],
-      role : ['',[Validators.required]]
-    })
+    if(!this._auth.loggedIn()) {
+      this._router.navigate(['/home'])
+    } else {
+      this.selectedForm = this.fb.group({
+        role: ['',[Validators.required]]        
+      })
+    }
+    
   }
 
-  get form() {
-    return this.registerGroup.controls;
-  }
-
-  register() {
-    this._auth.register(this.registerGroup.value)
-    .subscribe(
-      res => {
-        alert("gebruiker is geregistreerd")
-        this._router.navigate(['/dashboard'])
-      }, 
-      err => {
-        console.log(err)
-      }
-    )
-  }
+  onSelectRole() {
+    this.selected = this.selectedForm.value.role
+    console.log(this.selected)
+  }  
 
 }

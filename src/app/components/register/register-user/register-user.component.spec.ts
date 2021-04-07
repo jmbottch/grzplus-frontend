@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PsychoDashboardComponent } from './psycho-dashboard.component';
+import { RegisterUserComponent } from './register-user.component';
 
-describe('PsychoDashboardComponent', () => {
-  let component: PsychoDashboardComponent;
-  let fixture: ComponentFixture<PsychoDashboardComponent>;
+describe('RegisterUserComponent', () => {
+  let component: RegisterUserComponent;
+  let fixture: ComponentFixture<RegisterUserComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PsychoDashboardComponent ]
+      declarations: [ RegisterUserComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PsychoDashboardComponent);
+    fixture = TestBed.createComponent(RegisterUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
