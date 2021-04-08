@@ -22,7 +22,9 @@ export class DashboardComponent implements OnInit {
   decoded? : TokenSchema;
   selectedForm! : FormGroup;
   selected! : any
-  selectedPractitioner! : any
+  selectedPractitioner! : any;
+
+  
   
   ngOnInit(): void {    
     if(!this._auth.loggedIn()) {
@@ -80,7 +82,7 @@ export class DashboardComponent implements OnInit {
 
   onSelectPractitioner(practitioner : any) {
     this.selectedPractitioner = practitioner    
-  }
+  }  
 
 }
 

@@ -1,0 +1,90 @@
+<div class="container detailedCard"  *ngIf="patient" >
+    <div class="row">
+        <div class="col-md-12">
+            <mat-card >
+                <mat-card-header>
+                    <div class="row" style="width: 100%;">
+                        <div class="col-md-9">
+                            <h2 class="primary-color title">Mobiliteit en Transfer</h2>
+                        </div>
+                        <div class="col-md-3 text-right">
+                            <button mat-button class="primary-background mr-1">Bewerk</button>
+                            <button mat-button class="primary-background" (click)="close()">Terug</button>
+                        </div>
+                    </div>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="row ml-2">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-card>
+                                        <mat-card-content>
+                                            <h2 class="subtitle primary-color">Transfer in en uit bed</h2>
+                                            <div class="row">
+                                                <div class="col-md-6 text-center">
+                                                    
+                                                </div>
+                                                <div class="col-md-6 text-center">
+                                                    
+                                                </div>
+                                            </div>
+                                        </mat-card-content>
+                                    </mat-card>
+                                </div>
+                                <div class="col-md-6">
+                                     <mat-card>
+                                        <mat-card-content>
+                                            <h2 class="subtitle primary-color">Mobiliteit op de kamer</h2>
+                                            <div class="row">
+                                                <div class="col-md-6 text-center">
+                                                    <img src="{{patient.mobilityInRoom!.image!}}" class="img-fluid mobicon" />
+                                                </div>
+                                                <div class="col-md-6 text-center">
+                                                    
+                                                </div>
+                                            </div>
+                                        </mat-card-content>
+                                    </mat-card>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-6">
+                                    <mat-card>
+                                        <mat-card-content>
+                                            <h2 class="subtitle primary-color">Mobiliteit op de afdeling</h2>
+                                            <div class="row">
+                                                <div class="col-md-6 text-center">
+                                                    <img src="{{patient.mobilityOnDepartment!.image!}}" class="img-fluid mobicon" />
+                                                </div>
+                                                <div class="col-md-6 text-center">
+                                                    
+                                                </div>
+                                            </div>
+                                        </mat-card-content>
+                                    </mat-card>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-card>
+                                        <mat-card-content>
+                                            <h2 class="subtitle primary-color">Mobiliteit buiten de afdeling</h2>
+                                            <div class="row">
+                                                <div class="col-md-6 text-center">
+                                                    <img src="{{patient.mobilityOffDepartment!.image!}}" class="img-fluid mobicon" />
+                                                </div>
+                                                <div class="col-md-6 text-center">
+                                                    
+                                                </div>
+                                            </div>
+                                        </mat-card-content>
+                                    </mat-card>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>                
+            </mat-card>
+        </div>
+    </div>
+</div>
+

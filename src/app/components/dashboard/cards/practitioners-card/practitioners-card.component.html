@@ -1,0 +1,17 @@
+<div class="container detailedCard"  *ngIf="patient" >
+    <div class="row">
+        <div class="col-md-12">
+            <mat-card >
+                <mat-card-header>
+                    <h2 class="primary-color title mr-2">Behandelaren</h2>
+                </mat-card-header>
+                <mat-card-content>
+                    {{patient!.firstName}} {{patient!.lastName}}
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button (click)="close()">Jo later</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

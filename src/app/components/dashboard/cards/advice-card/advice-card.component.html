@@ -1,0 +1,43 @@
+<div class="container detailedCard"  *ngIf="patient" >
+    <div class="row">
+        <div class="col-md-12">
+            <mat-card >
+                <mat-card-header>
+                    <div class="row" style="width: 100%;">
+                        <div class="col-md-9">
+                            <h2 class="primary-color title">Slik- en Dieetadvies</h2>
+                        </div>
+                        <div class="col-md-3 text-right">
+                            <button mat-button class="primary-background mr-1">Bewerk</button>
+                            <button mat-button class="primary-background" (click)="close()">Terug</button>
+                        </div>
+                    </div>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="row ml-2">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-card>
+                                        <mat-card-content>
+                                            <h2 class="subtitle primary-color">Slikadvies</h2>
+                                        </mat-card-content>
+                                        <p>{{patient.swallowAdvice}}</p>
+                                    </mat-card>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-card>
+                                        <mat-card-content>
+                                            <h2 class="subtitle primary-color">Dieetadvies</h2>
+                                        </mat-card-content>
+                                        <p>{{patient.dietAdvice}}</p>
+                                    </mat-card>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </mat-card-content>                
+            </mat-card>
+        </div>
+    </div>
+</div>

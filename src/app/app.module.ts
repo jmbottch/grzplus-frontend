@@ -61,6 +61,11 @@ import { PatientService } from './services/patient/patient.service';
 import { RegisterUserComponent } from './components/register/register-user/register-user.component';
 import { RegisterPatientComponent } from './components/register/register-patient/register-patient.component';
 import { UserDashboardComponent } from './components/dashboard/user-dashboard/user-dashboard.component';
+import { AdviceCardComponent } from './components/dashboard/cards/advice-card/advice-card.component';
+import { InfoCardComponent } from './components/dashboard/cards/info-card/info-card.component';
+import { AdlCardComponent } from './components/dashboard/cards/adl-card/adl-card.component';
+import { PractitionersCardComponent } from './components/dashboard/cards/practitioners-card/practitioners-card.component';
+import { MobilityCardComponent } from './components/dashboard/cards/mobility-card/mobility-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +75,12 @@ import { UserDashboardComponent } from './components/dashboard/user-dashboard/us
     RegisterComponent,
     RegisterUserComponent,
     RegisterPatientComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
+    AdviceCardComponent,
+    InfoCardComponent,
+    AdlCardComponent,
+    PractitionersCardComponent,
+    MobilityCardComponent
   ],
   imports: [
     ReactiveFormsModule,
