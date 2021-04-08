@@ -31,7 +31,7 @@
                         </div>
                         <div class="col-md-2">
                             <img *ngIf="selected" style="width: 48px; height: 48px;"
-                            src="{{selected!.resuscitation.image}}" class="float-right">
+                            src="{{selected!.resuscitation!.image!}}" class="float-right">
                         </div>
                     </div>
                 </mat-card>
@@ -84,7 +84,7 @@
                 </mat-card-header>
                 <mat-card-content style="height: 215px; ">
                     <hr />
-                    <div *ngIf="selected" style="height: 115px;">
+                    <div *ngIf="selected && selected.practitioners" style="height: 115px;">
                         <ul>
                             <li *ngFor="let practitioner of selected.practitioners"
                                 (click)="onSelectPractitioner(practitioner)"><span
@@ -192,7 +192,7 @@
                 </mat-card-header>
                 <mat-card-content style="height: 150px; ">
                     <hr />
-                    <div *ngIf="selected">
+                    <div *ngIf="selected && selected.appointments">
 
                         <div *ngFor="let appointment of selected.appointments">
                             {{appointment.date}} heeft {{selected!.firstName}} {{selected!.lastName}} een afspraak

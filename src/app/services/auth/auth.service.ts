@@ -9,8 +9,8 @@ import jwt_decode from 'jwt-decode';
 })
 export class AuthService {
 
-  private _loginUrl = "http://localhost:3000/api/users/login";
-  private _authUrl = "http://localhost:3000/api/auth/patient";
+  private _loginUrl = "https://grzplusbackend.herokuapp.com/api/users/login";
+  private _authUrl = "https://grzplusbackend.herokuapp.com/api/auth/patient";
 
   constructor(private http: HttpClient, private _router: Router, private _user: UserService) { }
 

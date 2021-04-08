@@ -9,7 +9,7 @@ export class PatientService {
 
   constructor(private http: HttpClient, private _router: Router) { }
 
-  private _patients = "http://localhost:3000/api/patients";
+  private _patients = "https://grzplusbackend.herokuapp.com/api/patients";
 
   getAll() {
     return this.http.get<any>(this._patients)

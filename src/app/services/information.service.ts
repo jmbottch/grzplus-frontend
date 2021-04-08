@@ -9,7 +9,7 @@ export class InformationService {
 
   constructor(private http: HttpClient, private _router: Router) { }
 
-  private _resus = "http://localhost:3000/api/resus";
+  private _resus = "https://grzplusbackend.herokuapp.com/api/resus";
 
   getResus() {
     return this.http.get<any>(this._resus)
