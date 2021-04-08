@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 })
 export class UserService {
 
-  private _users = "http://localhost:3000/api/users";
+  private _users = "https://grzplusbackend.herokuapp.com/api/users";
 
   constructor(private http: HttpClient, private _router: Router) { }
 
