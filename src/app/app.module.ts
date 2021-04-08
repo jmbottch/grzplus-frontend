@@ -66,6 +66,8 @@ import { InfoCardComponent } from './components/dashboard/cards/info-card/info-c
 import { AdlCardComponent } from './components/dashboard/cards/adl-card/adl-card.component';
 import { PractitionersCardComponent } from './components/dashboard/cards/practitioners-card/practitioners-card.component';
 import { MobilityCardComponent } from './components/dashboard/cards/mobility-card/mobility-card.component';
+import { InformationService } from './services/information.service';
+import { UserService } from './services/user/user.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -133,7 +135,7 @@ import { MobilityCardComponent } from './components/dashboard/cards/mobility-car
     PortalModule,
     ScrollingModule
   ],
-  providers: [AuthService, PatientService , {
+  providers: [AuthService, PatientService, InformationService, UserService, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true
