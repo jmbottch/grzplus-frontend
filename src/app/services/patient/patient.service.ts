@@ -23,5 +23,9 @@ export class PatientService {
     return this.http.post<any>(this._patients, patient)
   }
 
+  addUser(patientId: any, userId: any) {
+    return this.http.put<any>(this._patients + "/" + patientId + "/adduser", userId)
+  }
+
 
 }

@@ -1,15 +1,76 @@
 <div class="container detailedCard"  *ngIf="patient" >
     <div class="row">
         <div class="col-md-12">
-            <mat-card >
-                <mat-card-header>
-                    <h2 class="primary-color title mr-2">Behandelaren</h2>
-                </mat-card-header>
-                <mat-card-content>
-                    {{patient!.firstName}} {{patient!.lastName}}
+            <mat-card >                
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h2 class="primary-color title mr-2">Behandelaren</h2>
+                        </div>
+                        <div class="col-md-3">
+                            <button mat-raised-button class="primary-background mr-1" (click)="toggleAdd()">+</button>
+                            <button mat-raised-button class="primary-background" (click)="close()">Terug</button>
+                        </div>
+                    </div>               
+                <mat-card-content *ngIf="addNew == false">
+                    <div class="row ml-2">
+                        <div class="col-md-4" *ngFor="let practitioner of patient.practitioners">
+                            <mat-card>                                
+                                    <h2 class="title primary-color text-center">{{practitioner.role}}</h2>
+                                    <mat-card-content>
+                                        <p>Naam : {{practitioner.firstName}} {{practitioner.lastName}}</p>
+                                        <p>Email : {{practitioner.email}}</p>
+                                    </mat-card-content>
+                            </mat-card>
+                        </div>
+                    </div>
+                    
+                   
+                </mat-card-content>
+                <mat-card-content *ngIf="addNew == true">
+                    <div class="row ml-2">
+                        <div class="col-md-8">
+                            <form [formGroup]="selectedForm">                              
+                                  <div class="row">
+                                      <div class="col-md-8">
+                                        <mat-form-field appearance="outline" class="ml-2 mb-2" style="width: 100% !important;">
+                                            <mat-label>Behandelaar</mat-label>
+                                            <mat-select placeholder="Kies de functie van de gebruiker." formControlName="practitioner"
+                                                required>
+                                                <mat-option *ngFor="let user of users" matInput [value]="user._id">
+                                                    {{user.firstName}} {{user.lastName}} - {{user.role}}</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                      </div>
+                                      <div class="col-md-4">
+                                        <button mat-raised-button class="mt-3 selectbtn primary-background" style="height: 50px !important;" class="text-left"
+                                            (click)="add()">Voeg toe</button>
+                                      </div>
+                                  </div>
+                                        
+                                   
+                                  
+                                        
+                                  
+                                    
+            
+                            </form>
+                        </div>
+                        <div class="col-md-4">
+                            <p>Kies in de lijst links een behandelaar, en klik op "Voeg toe" om deze toe te voegen aan het dashboard van de revalidant.</p>
+                        </div>
+                        <!-- <div class="col-md-4" *ngFor="let user of users">
+                            <mat-card>                                
+                                    <h2 class="title primary-color text-center">{{user.role}}</h2>
+                                    <mat-card-content>
+                                        <p>Naam : {{user.firstName}} {{user.lastName}}</p>
+                                        <p>Email : {{user.email}}</p>
+                                    </mat-card-content>
+                            </mat-card>
+                        </div> -->
+                    </div>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-raised-button (click)="close()">Jo later</button>
+                    
                 </mat-card-actions>
             </mat-card>
         </div>

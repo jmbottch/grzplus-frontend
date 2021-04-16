@@ -70,5 +70,6 @@ export class UserDashboardComponent implements OnInit {
   removeSelectedCard() {
     this.toggleBlur();    
     this.selectedCard = null;
+    this.ngOnInit();
   }
 }
