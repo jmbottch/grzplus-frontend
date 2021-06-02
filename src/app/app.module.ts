@@ -68,6 +68,8 @@ import { PractitionersCardComponent } from './components/dashboard/cards/practit
 import { MobilityCardComponent } from './components/dashboard/cards/mobility-card/mobility-card.component';
 import { InformationService } from './services/information.service';
 import { UserService } from './services/user/user.service';
+import { CommentsCardComponent } from './components/dashboard/cards/comments-card/comments-card.component';
+import { ClientDashboardComponent } from './components/dashboard/client-dashboard/client-dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +84,9 @@ import { UserService } from './services/user/user.service';
     InfoCardComponent,
     AdlCardComponent,
     PractitionersCardComponent,
-    MobilityCardComponent
+    MobilityCardComponent,
+    CommentsCardComponent,
+    ClientDashboardComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -135,7 +139,7 @@ import { UserService } from './services/user/user.service';
     PortalModule,
     ScrollingModule
   ],
-  providers: [AuthService, PatientService, InformationService, UserService, {
+  providers: [AuthService, UserDashboardComponent, ClientDashboardComponent, PatientService, InformationService, UserService, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true

@@ -1,42 +1,270 @@
-<div class="container detailedCard"  *ngIf="patient" >
+<div class="container detailedCard">
     <div class="row">
         <div class="col-md-12">
-            <mat-card >
+            <mat-card>
                 <mat-card-header>
                     <div class="row" style="width: 100%;">
                         <div class="col-md-9">
                             <h2 class="primary-color title">Slik- en Dieetadvies</h2>
                         </div>
                         <div class="col-md-3 text-right">
-                            <button mat-button class="primary-background mr-1">Bewerk</button>
+                            <button mat-button class="primary-background mr-1" (click)="toggleEdit()">Bewerk</button>
                             <button mat-button class="primary-background" (click)="close()">Terug</button>
                         </div>
                     </div>
                 </mat-card-header>
-                <mat-card-content>
+                <mat-card-content *ngIf="patient && edit == false">
                     <div class="row ml-2">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-9">
                                     <mat-card>
                                         <mat-card-content>
-                                            <h2 class="subtitle primary-color">Slikadvies</h2>
+                                            <h2 class="subtitle primary-color">Consistentie</h2>
+                                            <p><span class="subsubtitle">Drinken</span> <br />
+                                                {{patient!.swallowAdvice!.consistency!.drinks!}}</p>
+                                            <p><span class="subsubtitle">Normale Warme Maaltijd</span><br />
+                                                {{patient!.swallowAdvice!.consistency!.regularmeal!}}</p>
+                                            <p><span class="subsubtitle">Soep</span><br />
+                                                {{patient!.swallowAdvice!.consistency!.soup!}}</p>
+                                            <p><span class="subsubtitle">Brood</span><br />
+                                                {{patient!.swallowAdvice!.consistency!.bread!}}</p>
+                                            <p><span class="subsubtitle">Tussendoor</span><br />
+                                                {{patient!.swallowAdvice!.consistency!.snacks!}}</p>
                                         </mat-card-content>
-                                        <p>{{patient.swallowAdvice}}</p>
+
                                     </mat-card>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-3 text-center">
                                     <mat-card>
                                         <mat-card-content>
                                             <h2 class="subtitle primary-color">Dieetadvies</h2>
+                                            <p><span class="subsubtitle">Ontbijt</span> <br />
+                                                {{patient!.dietAdvice!.breakfast!}}</p>
+                                            <p><span class="subsubtitle">Lunch</span><br />
+                                                {{patient!.dietAdvice!.lunch!}}</p>
+                                            <p><span class="subsubtitle">Diner</span><br />
+                                                {{patient!.dietAdvice!.dinner!}}</p>
                                         </mat-card-content>
-                                        <p>{{patient.dietAdvice}}</p>
                                     </mat-card>
                                 </div>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
-                </mat-card-content>                
+                    <div class="row ml-2">
+                        <div class="col-md-6 mt-2">
+                            <mat-card>
+                                <mat-card-content>
+                                    <h2 class="subtitle primary-color">Begeleiding</h2>
+                                    <ul>
+                                        <li *ngFor="let assist of patient!.swallowAdvice!.assistance!">{{assist}}</li>
+                                    </ul>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                        <div class="col-md-6 mt-2">
+                            <mat-card>
+                                <mat-card-content>
+                                    <h2 class="subtitle primary-color" style="font-size: 16px !important;">Houding en
+                                        compensatiebewegingen</h2>
+                                    <ul>
+                                        <li *ngFor="let movement of patient!.swallowAdvice!.movements!">{{movement}}
+                                        </li>
+                                    </ul>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                    </div>
+                    <div class="row ml-2">
+                        <div class="col-md-4 mt-2">
+                            <mat-card>
+                                <mat-card-content>
+                                    <h2 class="subtitle primary-color" style="font-size: 16px !important;">Hulpmiddelen
+                                    </h2>
+                                    <ul>
+                                        <li *ngFor="let tool of patient!.swallowAdvice!.tools!">{{tool}}</li>
+                                    </ul>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                        <div class="col-md-4 mt-2">
+                            <mat-card>
+                                <mat-card-content>
+                                    <h2 class="subtitle primary-color" style="font-size: 16px !important;">Mondhygiëne
+                                    </h2>
+                                    <ul>
+                                        <li *ngFor="let hy of patient!.swallowAdvice!.hygiene!">{{hy}}</li>
+                                    </ul>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                        <div class="col-md-4 mt-2">
+                            <mat-card>
+                                <mat-card-content>
+                                    <h2 class="subtitle primary-color" style="font-size: 16px !important;">Medicatie
+                                    </h2>
+                                    <ul>
+                                        <li *ngFor="let medi of patient!.swallowAdvice!.medication!">{{medi}}</li>
+                                    </ul>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                    </div>
+                </mat-card-content>
+                <mat-card-content *ngIf="edit == true">
+                    <form [formGroup]="editForm">
+                        <div class="row ml-2" style="width: 100%;">
+                            <div formGroupName="consistency" class="col-md-12">
+                                <mat-card>
+                                    <mat-card-content>
+                                        <h2 class="subtitle primary-color">Consistentie</h2>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p class="subsubtitle">Drinken</p>
+                                                <mat-form-field appearance="outline" style="width: 100%;">
+                                                    <mat-label>Beschrijf hier de consistentie van het drinken.
+                                                        <br />bijvoorbeeld: dikte van karnemelk, aantal schepjes
+                                                        verdikkings middel, etc.
+                                                    </mat-label>
+                                                    <textarea formControlName="drinks" matInput></textarea>
+                                                </mat-form-field>
+
+                                                <p class="subsubtitle">Normale Warme Maaltijd</p>
+                                                <mat-form-field appearance="outline" style="width: 100%;">
+                                                    <mat-label>Beschrijf hier de consistentie van de warme maaltijd
+                                                    </mat-label>
+                                                    <textarea formControlName="regularmeal" matInput></textarea>
+                                                </mat-form-field>
+
+                                                <p class="subsubtitle">Soep</p>
+                                                <mat-form-field appearance="outline" style="width: 100%;">
+                                                    <mat-label>Beschrijf hier de consistentie van de soep</mat-label>
+                                                    <textarea formControlName="soup" matInput></textarea>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p class="subsubtitle">Brood</p>
+                                                <mat-form-field appearance="outline" style="width: 100%;">
+                                                    <mat-label>Beschrijf hier de consistentie van de brood (of pap)
+                                                        maaltijden <br />bijvoorbeeld: broodstukjes max 2x2 cm
+                                                    </mat-label>
+                                                    <textarea formControlName="bread" matInput></textarea>
+                                                </mat-form-field>
+
+                                                <p class="subsubtitle">Tussendoor</p>
+                                                <mat-form-field appearance="outline" style="width: 100%;">
+                                                    <mat-label>Beschrijf hier de consistentie van de tussendoortjes
+                                                    </mat-label>
+                                                    <textarea formControlName="snacks" matInput></textarea>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                        </div>
+                        <div class="row ml-2">
+                            <div class="col-md-4 mt-2" formGroupName="dietAdvice">
+                                <mat-card>                                    
+                                    <mat-card-content>
+                                        <h2 class="subtitle primary-color">Dieetadvies</h2>
+                                        <p class="subsubtitle">Ontbijt</p>
+                                        <mat-form-field appearance="outline" class="ml-2" style="width:100%">
+                                            <mat-label>Tijd van ontbijt</mat-label>
+                                            <input matInput formControlName="breakfast" type="time">                                           
+                                        </mat-form-field>
+                                        <p class="subsubtitle">Lunch</p>
+                                        <mat-form-field appearance="outline" class="ml-2" style="width:100%">
+                                            <mat-label>Tijd van de lunch</mat-label>
+                                            <input matInput formControlName="lunch" type="time">                                           
+                                        </mat-form-field>
+                                        <p class="subsubtitle">Diner</p>
+                                        <mat-form-field appearance="outline" class="ml-2" style="width:100%">
+                                            <mat-label>Tijd van het diner</mat-label>
+                                            <input matInput formControlName="dinner" type="time">                                           
+                                        </mat-form-field>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                            <div class="col-md-8 mt-2">
+                                <mat-card>
+                                    <mat-card-content>
+                                        <h2 class="subtitle primary-color">Begeleiding</h2>
+                                        <div formArrayName="assistance" *ngFor="let assist of assistance.controls; let i = index">
+                                            <mat-form-field appearance='outline' class="ml-2" style="width: 100%;">
+                                                <mat-label>Voer hier informatie in over begeleiding <br/>bij het eten.</mat-label>
+                                                <textarea matInput [formControlName]='i' type="text"></textarea>
+                                            </mat-form-field>
+                                        </div>
+                                        <button mat-button class="primary-background float-right mb-1" (click)="addAssistance()">Extra item</button>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                        </div>
+                        <div class="row ml-2">
+                            <div class="col-md-6 mt-2">
+                                <mat-card>
+                                    <mat-card-content>
+                                        <h2 class="subtitle primary-color">Houding en compensatiebewegingen</h2>
+                                        <div formArrayName="movements" *ngFor="let movement of movements.controls; let i = index">
+                                            <mat-form-field appearance='outline' class="ml-2" style="width: 100%;">
+                                                <mat-label>Voer hier informatie in over (zit)houding <br/>en compensatiebewegingen bij het eten.</mat-label>
+                                                <textarea matInput [formControlName]='i' type="text"></textarea>
+                                            </mat-form-field>
+                                        </div>
+                                        <button mat-button class="primary-background float-right mb-1" (click)="addMovement()">Extra item</button>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                            <div class="col-md-6 mt-2">
+                                <mat-card>
+                                    <mat-card-content>
+                                        <h2 class="subtitle primary-color">Hulpmiddelen</h2>
+                                        <div formArrayName="tools" *ngFor="let tool of tools.controls; let i = index">
+                                            <mat-form-field appearance='outline' class="ml-2" style="width: 100%;">
+                                                <mat-label>Voer hier informatie in over hulpmiddelen <br/>bij het eten.</mat-label>
+                                                <textarea matInput [formControlName]='i' type="text"></textarea>
+                                            </mat-form-field>
+                                        </div>
+                                        <button mat-button class="primary-background float-right mb-1" (click)="addTool()">Extra item</button>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                        </div>
+                        <div class="row ml-2">
+                            <div class="col-md-6 mt-2">
+                                <mat-card>
+                                    <mat-card-content>
+                                        <h2 class="subtitle primary-color">Hygiene</h2>
+                                        <div formArrayName="hygiene" *ngFor="let hyg of hygiene.controls; let i = index">
+                                            <mat-form-field appearance='outline' class="ml-2" style="width: 100%;">
+                                                <mat-label>Voer hier informatie in over (mond)hygiene</mat-label>
+                                                <textarea matInput [formControlName]='i' type="text"></textarea>
+                                            </mat-form-field>
+                                        </div>
+                                        <button mat-button class="primary-background float-right mb-1" (click)="addHygiene()">Extra item</button>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                            <div class="col-md-6 mt-2">
+                                <mat-card>
+                                    <mat-card-content>
+                                        <h2 class="subtitle primary-color">Medicatie</h2>
+                                        <div formArrayName="medication" *ngFor="let medi of medication.controls; let i = index">
+                                            <mat-form-field appearance='outline' class="ml-2" style="width: 100%;">
+                                                <mat-label>Voer hier informatie in over de medicatie die ingenomen moet worden <br/> Bijvoorbeeld: Gemalen, opgelost etc.</mat-label>
+                                                <textarea matInput [formControlName]='i' type="text"></textarea>
+                                            </mat-form-field>
+                                        </div>
+                                        <button mat-button class="primary-background float-right mb-1" (click)="addMedication()">Extra item</button>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                            
+                        </div>
+                    </form>
+                    <button mat-button class="float-right primary-background mt-2" (click)="editAdvice()">Opslaan</button>
+                </mat-card-content>
             </mat-card>
         </div>
     </div>

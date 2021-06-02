@@ -1,76 +1,77 @@
-    <div class="container" #blurme>
-        <div class="row">
-            <div class="col-md-12" >
-                <mat-card style="height: 80px;">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h2 class="primary-color title">
-                                Dashboard
-                            </h2>
-                        </div>
-                        <div class="col-md-6">
-                            <form [formGroup]="selectedForm">
-                                <div class="row parent">
-                                    <div class="col-md-8 child">
-                                        <mat-form-field appearance="outline" class="ml-2 mb-2" style="width: 100% !important;">
-                                            <mat-label>Revalidant</mat-label>
-                                            <mat-select placeholder="Kies de functie van de gebruiker." formControlName="selected"
-                                                required>
-                                                <mat-option *ngFor="let patient of patients" matInput [value]="patient">
-                                                    {{patient.firstName}} {{patient.lastName}}</mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-4 child">
-                                        <button mat-raised-button class="mt-3 selectbtn" style="height: 50px !important;" class="text-left"
-                                            (click)="onSelect()">Selecteer</button>
-                                    </div>
-                                </div>           
-            
-                            </form>
-                        </div>
-                        <div class="col-md-2">
-                            <img *ngIf="selected" style="width: 48px; height: 48px;"
+<div class="container" #blurme>
+    <div class="row">
+        <div class="col-md-12">
+            <mat-card style="height: 80px;">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2 class="primary-color title">
+                            Dashboard
+                        </h2>
+                    </div>
+                    <div class="col-md-6">
+                        <form [formGroup]="selectedForm">
+                            <div class="row parent">
+                                <div class="col-md-8 child">
+                                    <mat-form-field appearance="outline" class="ml-2 mb-2"
+                                        style="width: 100% !important;">
+                                        <mat-label>Revalidant</mat-label>
+                                        <mat-select placeholder="Kies de functie van de gebruiker."
+                                            formControlName="selected" required>
+                                            <mat-option *ngFor="let patient of patients" matInput [value]="patient">
+                                                {{patient.firstName}} {{patient.lastName}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4 child">
+                                    <button mat-raised-button class="mt-3 selectbtn" style="height: 50px !important;"
+                                        class="text-left" (click)="onSelect()">Selecteer</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="col-md-2">
+                        <img *ngIf="selected" style="width: 48px; height: 48px;"
                             src="{{selected!.resuscitation!.image!}}" class="float-right">
-                        </div>
                     </div>
-                </mat-card>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 mt-2">
-                <mat-card style="background: whitesmoke;" (click)="onSelectCard('info')">
-                    <mat-card-header>
-                        <mat-card-title *ngIf="!selected">
-                            Gegevens
-                        </mat-card-title>
-                        
-                        <mat-card-title *ngIf="selected">
-                            {{selected.firstName}} {{selected.lastName}}
-                        </mat-card-title>
-           
-            </mat-card-header>
-            <mat-card-content style="height: 215px; ">
-                <hr />               
-                <div class="ml-2" *ngIf="selected">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img src="" style="height: 100px; width: 60px;">
-
-                        </div>
-                        <div class="col-md-9">
-                            <b>Naam: </b><br/>
-                            {{selected!.firstName}} {{selected!.lastName}}<br/>
-                            <b>Geboortedatum: </b><br/>
-                            {{selected!.dateOfBirth}}<br/>
-                            <b>Voorlopig ontslag: </b><br/>
-                            {{selected!.dateOfDeparture}}                    
-                            
-                        </div>
-                    </div>
-
                 </div>
-            </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 mt-2">
+            <mat-card style="background: whitesmoke;" (click)="onSelectCard('info')">
+                <mat-card-header>
+                    <mat-card-title *ngIf="!selected">
+                        Gegevens
+                    </mat-card-title>
+
+                    <mat-card-title *ngIf="selected">
+                        {{selected.firstName}} {{selected.lastName}}
+                    </mat-card-title>
+
+                </mat-card-header>
+                <mat-card-content style="height: 215px; ">
+                    <hr />
+                    <div class="ml-2" *ngIf="selected">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="" style="height: 100px; width: 60px;">
+
+                            </div>
+                            <div class="col-md-9">
+                                <b>Naam: </b><br />
+                                {{selected!.firstName}} {{selected!.lastName}}<br />
+                                <b>Geboortedatum: </b><br />
+                                {{selected!.dateOfBirth | date: 'fullDate'}}<br />
+                                <b>Voorlopig ontslag: </b><br />
+                                {{selected!.dateOfDeparture | date: 'fullDate'}}
+
+                            </div>
+                        </div>
+
+                    </div>
+                </mat-card-content>
 
 
             </mat-card>
@@ -110,17 +111,8 @@
 
             </mat-card>
         </div>
-        <div class="col-md-4 mt-2">
-            <div class="row mt-1" style="height: 32%;">
-                <div class="col-md-12">
-                    <mat-card (click)="onSelectCard('mobility')" style="height: 100%;">
-                        <mat-card-header>
-                            <mat-card-title>Mobiliteit | Transfer</mat-card-title>
-                        </mat-card-header>
-                    </mat-card>
-                </div>
-            </div>
-            <div class="row mt-1" style="height: 32%;">
+        <div class="col-md-4 mt-2">           
+            <div class="row mt-1" style="height: 50%;">
                 <div class="col-md-12">
                     <mat-card (click)="onSelectCard('advice')" style="height: 100%;">
                         <mat-card-header>
@@ -129,7 +121,7 @@
                     </mat-card>
                 </div>
             </div>
-            <div class="row mt-1" style="height: 32%;">
+            <div class="row mt-1" style="height: 50%;">
                 <div class="col-md-12">
                     <mat-card (click)="onSelectCard('adl')" style="height: 100%;">
                         <mat-card-header>
@@ -137,24 +129,8 @@
                         </mat-card-header>
                     </mat-card>
                 </div>
-            </div>            
-        </div>
-        <!-- <div class="col-md-4">
-            <mat-card style="background: whitesmoke;">
-                <mat-card-header>
-                    <mat-card-title>
-                        Doel van de week
-                    </mat-card-title>
-                </mat-card-header>
-                <mat-card-content style="height:215px; ">
-                    <hr />
-                    <div *ngIf="selected">
-
-                        <p>{{selected!.goalOfTheWeek}}</p>
-                    </div>
-                </mat-card-content>
-            </mat-card>
-        </div>         -->
+            </div>
+        </div>        
     </div>
     <div class="row mt-3">
         <div class="col-md-4">
@@ -195,7 +171,7 @@
                     <div *ngIf="selected && selected.appointments">
 
                         <div *ngFor="let appointment of selected.appointments">
-                            {{appointment.date}} heeft {{selected!.firstName}} {{selected!.lastName}} een afspraak
+                            {{appointment!.date! | date : 'short'}} heeft {{selected!.firstName}} {{selected!.lastName}} een afspraak
                             met
                             {{appointment.practitioner.firstName}} {{appointment.practitioner.lastName}}. <br />
                             Beschrijving: {{appointment.description}}
@@ -217,12 +193,78 @@
                 <mat-card-content style="height: 150px; ">
                     <hr />
                     <div *ngIf="selected">
-                        <div *ngFor="let comment of selected.comments">
-                            {{comment.author.firstName}} {{comment.author.lastName}} zei: "{{comment.content}}"
+                        <div *ngFor="let comment of selected.comments.reverse().slice(0,6)">
+                            {{comment.author}} zei: "{{comment.content}}"
                         </div>
                     </div>
                 </mat-card-content>
 
+            </mat-card>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Mobiliteit | Transfer</mat-card-title>
+                </mat-card-header>
+                <mat-card-content *ngIf="selected">
+                    <hr />
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <h2 class="subtitle primary-color">Transfer in en uit bed</h2>
+                            <div class="row">
+                                <div class="col-md-5 text-center">
+                                    <img src="{{selected!.transfer.transfer.image!}}" class="img-fluid mobicon" />
+                                </div>
+                                <div class="col-md-5 text-center">
+                                    <img src="{{selected!.transfer.facscore.image!}}" class="img-fluid mobicon" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h2 class="subtitle primary-color">Mobiliteit op de kamer</h2>
+                            <div class="row">
+                                <div class="col-md-5 text-center">
+                                    <img src="{{selected!.mobilityInRoom!.mobility.image!}}"
+                                        class="img-fluid mobicon" />
+                                </div>
+                                <div class="col-md-5 text-center">
+                                    <img src="{{selected!.mobilityInRoom!.facscore.image!}}"
+                                        class="img-fluid mobicon" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2 class="subtitle primary-color">Mobiliteit op de afdeling</h2>
+                            <div class="row">
+                                <div class="col-md-5 text-center">
+                                    <img src="{{selected!.mobilityOnDepartment!.mobility.image!}}"
+                                        class="img-fluid mobicon" />
+                                </div>
+                                <div class="col-md-5 text-center">
+                                    <img src="{{selected!.mobilityOnDepartment!.facscore.image!}}"
+                                        class="img-fluid mobicon" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h2 class="subtitle primary-color">Mobiliteit buiten de afdeling</h2>
+                            <div class="row">
+                                <div class="col-md-5 text-center">
+                                    <img src="{{selected!.mobilityOffDepartment!.mobility.image!}}"
+                                        class="img-fluid mobicon" />
+                                </div>
+                                <div class="col-md-5 text-center">
+                                    <img src="{{selected!.mobilityOffDepartment!.facscore.image!}}"
+                                        class="img-fluid mobicon" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
             </mat-card>
         </div>
     </div>
@@ -241,4 +283,7 @@
 </div>
 <div *ngIf="selectedCard == 'mobility'">
     <app-mobility-card [patient]="selected"></app-mobility-card>
+</div>
+<div *ngIf="selectedCard == 'comments'">
+    <app-comments-card [patient]="selected"></app-comments-card>
 </div>

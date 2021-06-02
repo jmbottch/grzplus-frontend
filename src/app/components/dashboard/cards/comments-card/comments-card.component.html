@@ -1,0 +1,66 @@
+<div class="container detailedCard"  *ngIf="patient" >
+    <div class="row">
+        <div class="col-md-12">
+            <mat-card >
+               
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h2 class="primary-color title mr-2">Opmerkingen</h2>
+                        </div>
+                        <div class="col-md-2">
+                            <button mat-button class="primary-background" (click)="close()">Terug</button>
+                        </div>
+                    </div>
+                
+                <mat-card-content>  
+                    <div class="row ml-2">
+                        <div class="col-md-8">
+                            <h2 class="subtitle primary-color">Bestaande opmerkingen</h2>
+                            <div class="speech-wrapper" style="overflow: scroll; height: 60vh;">
+                            <div *ngIf="patient">
+                                <div *ngFor="let comment of comments">
+                                    <!--  zei: "" -->
+                                        <div class="bubble mt-1" *ngIf="checkOwnComment(comment.author) == true">
+                                          <div class="txt">
+                                            <p class="name">U</p>
+                                            <p class="message">{{comment.content}}</p>
+                                            <br/>
+                                            <span class="timestamp" *ngIf="comment.createdAt">{{comment.createdAt | date: 'short'}}</span>
+                                            <span class="timestamp" style="text-transform: lowercase !important;" *ngIf="!comment.createdAt">Zojuist</span>
+                                          </div>
+                                          <div class="bubble-arrow"></div>
+                                        </div>
+                                        <!--  Speech Bubble alternative -->
+                                        <div class="bubble alt mt-1" *ngIf="checkOwnComment(comment.author) == false">
+                                          <div class="txt">
+                                            <p class="name alt">{{comment.author}}</p>
+                                            <p class="message">{{comment.content}}</p>
+                                            <br/>
+                                            <span class="timestamp alt">{{comment.createdAt | date:'short'}}</span>
+                                          </div>
+                                          <div class="bubble-arrow alt"></div>
+                                        </div>
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h2 class="subtitle primary-color">Opmerking toevoegen</h2>
+                            <form [formGroup]="commentForm">                            
+                            <mat-form-field appearance="outline" style="width: 100%;">
+                                <mat-label>Laat een opmerking achter</mat-label>
+                                <textarea formControlName="content" matInput></textarea>
+                            </mat-form-field>
+                            <button mat-raised-button class="primary-background mt-1 float-right" (click)="addComment()" type="submit">Opmerking toevoegen</button>
+                        </form>
+                        </div>
+                    </div>
+
+
+                    
+                    
+                </mat-card-content>                
+            </mat-card>
+        </div>
+    </div>
+</div>

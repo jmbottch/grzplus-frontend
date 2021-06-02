@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PatientService } from 'src/app/services/patient/patient.service';
+import { ClientDashboardComponent } from '../client-dashboard/client-dashboard.component';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -19,7 +20,7 @@ export class UserDashboardComponent implements OnInit {
 
   selectedCard! : any
 
-  constructor(private _patient: PatientService, private fb: FormBuilder) { }
+  constructor(private clientDashboard : ClientDashboardComponent, private _patient: PatientService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this._patient.getAll()
@@ -42,7 +43,7 @@ export class UserDashboardComponent implements OnInit {
 
   onSelect() {
     this.selected = this.selectedForm.value.selected
-    console.log(this.selected)
+    console.log(this.selected.transfer)
   }
 
   onSelectPractitioner(practitioner: any) {
@@ -69,7 +70,6 @@ export class UserDashboardComponent implements OnInit {
   }
   removeSelectedCard() {
     this.toggleBlur();    
-    this.selectedCard = null;
-    this.ngOnInit();
+    this.selectedCard = null;    
   }
 }

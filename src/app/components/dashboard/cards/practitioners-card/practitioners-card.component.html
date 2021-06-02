@@ -6,15 +6,15 @@
                         <div class="col-md-9">
                             <h2 class="primary-color title mr-2">Behandelaren</h2>
                         </div>
-                        <div class="col-md-3">
-                            <button mat-raised-button class="primary-background mr-1" (click)="toggleAdd()">+</button>
+                        <div class="col-md-3 text-right">
+                            <button *ngIf="usertype == 'user'" mat-raised-button class="primary-background mr-1" (click)="toggleAdd()">+</button>
                             <button mat-raised-button class="primary-background" (click)="close()">Terug</button>
                         </div>
                     </div>               
                 <mat-card-content *ngIf="addNew == false">
                     <div class="row ml-2">
-                        <div class="col-md-4" *ngFor="let practitioner of patient.practitioners">
-                            <mat-card>                                
+                        <div class="col-md-3" *ngFor="let practitioner of patient.practitioners">
+                            <mat-card style="height:100%">                                
                                     <h2 class="title primary-color text-center">{{practitioner.role}}</h2>
                                     <mat-card-content>
                                         <p>Naam : {{practitioner.firstName}} {{practitioner.lastName}}</p>

@@ -3,6 +3,8 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PatientService } from 'src/app/services/patient/patient.service';
 import { UserService } from 'src/app/services/user/user.service';
+import { ClientDashboardComponent } from '../../client-dashboard/client-dashboard.component';
+import { DashboardComponent } from '../../dashboard.component';
 import { UserDashboardComponent } from '../../user-dashboard/user-dashboard.component';
 
 @Component({
@@ -16,10 +18,13 @@ export class PractitionersCardComponent implements OnInit {
   addNew : Boolean = false;
   users : any;
   selectedForm! : any;
+  usertype : any;
 
-  constructor(private userDashboard : UserDashboardComponent, private _user : UserService, private fb : FormBuilder, private _patient : PatientService, private _router : Router) { }
+
+  constructor(private dashboard : DashboardComponent, private userDashboard : UserDashboardComponent, private _user : UserService, private fb : FormBuilder, private _patient : PatientService, private _router : Router, private clientDashboard : ClientDashboardComponent) { }
 
   ngOnInit(): void {
+    this.usertype = this.dashboard.usertype
     this._user.getAll()
     .subscribe(
       res => {
@@ -31,11 +36,12 @@ export class PractitionersCardComponent implements OnInit {
     ),
     this.selectedForm = this.fb.group({
       practitioner: []
-    })
+    })    
   }
   
   close() {
     this.userDashboard.removeSelectedCard()
+    this.clientDashboard.removeSelectedCard()
   }
 
   toggleAdd() {
@@ -55,7 +61,7 @@ export class PractitionersCardComponent implements OnInit {
         console.log(this.selectedForm.value)
         console.log(res)
         this.userDashboard.removeSelectedCard()
-        alert("Behandelaar is toegevoegd.")
+        alert("Behandelaar is toegevoegd, ververs de pagina om de nieuwe behandelaar in de lijst te zien.")
         
       },
       err => {
