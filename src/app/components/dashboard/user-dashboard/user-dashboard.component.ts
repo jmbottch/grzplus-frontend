@@ -13,12 +13,12 @@ export class UserDashboardComponent implements OnInit {
   @ViewChild("blurme") blur : any;
   blurActive!: Boolean;
   
-  patients!: any
+  patients!: any;
   selectedForm!: FormGroup;
-  selected!: any
-  selectedPractitioner!: any
+  selected!: any;
+  selectedPractitioner!: any; 
 
-  selectedCard! : any
+  selectedCard! : any;
 
   constructor(private clientDashboard : ClientDashboardComponent, private _patient: PatientService, private fb: FormBuilder) { }
 
@@ -43,7 +43,6 @@ export class UserDashboardComponent implements OnInit {
 
   onSelect() {
     this.selected = this.selectedForm.value.selected
-    console.log(this.selected.transfer)
   }
 
   onSelectPractitioner(practitioner: any) {

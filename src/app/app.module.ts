@@ -70,6 +70,9 @@ import { InformationService } from './services/information.service';
 import { UserService } from './services/user/user.service';
 import { CommentsCardComponent } from './components/dashboard/cards/comments-card/comments-card.component';
 import { ClientDashboardComponent } from './components/dashboard/client-dashboard/client-dashboard.component';
+import { AppointmentsCardComponent } from './components/dashboard/cards/appointments-card/appointments-card.component';
+import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
+import { GoalsCardComponent } from './components/dashboard/cards/goals-card/goals-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,7 +89,9 @@ import { ClientDashboardComponent } from './components/dashboard/client-dashboar
     PractitionersCardComponent,
     MobilityCardComponent,
     CommentsCardComponent,
-    ClientDashboardComponent
+    ClientDashboardComponent,
+    AppointmentsCardComponent,
+    GoalsCardComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -135,6 +140,8 @@ import { ClientDashboardComponent } from './components/dashboard/client-dashboar
     MatTabsModule,
     MatTooltipModule,
     MatTreeModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
     OverlayModule,
     PortalModule,
     ScrollingModule

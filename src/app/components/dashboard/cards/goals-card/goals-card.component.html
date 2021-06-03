@@ -1,0 +1,162 @@
+<div class="container detailedCard" *ngIf="patient">
+    <div class="row">
+        <div class="col-md-12">
+            <mat-card>
+                <mat-card-content class="ml-2">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h2 class="primary-color title mr-2">Doelen en Oefeningen</h2>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="float-right mr-2">
+                                <button mat-button class="primary-background mr-2"
+                                    (click)="toggleEdit()">Bewerk</button>
+                                <button mat-button class="primary-background" (click)="close()">Terug</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="edit == false">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-12 mt-2">
+                                    <mat-card>
+                                        <mat-card-content>
+                                            <h2 class="primary-color subtitle">
+                                                Hoofddoel
+                                            </h2>
+                                            <p>{{patient.mainGoal}}</p>
+                                        </mat-card-content>
+                                    </mat-card>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 mt-2">
+                                    <mat-card>
+                                        <mat-card-content>
+                                            <h2 class="primary-color subtitle">
+                                                Subdoelen
+                                            </h2>
+                                            <ul>
+                                                <li *ngFor="let goal of patient.subGoals">
+                                                    {{goal}}
+                                                </li>
+                                            </ul>
+                                        </mat-card-content>
+                                    </mat-card>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mt-2">
+                            <mat-card>
+                                <mat-card-content>
+                                    <h2 class="primary-color subtitle">
+                                        Oefeningen
+                                    </h2>
+                                    <div *ngFor="let exercise of patient.exercises">
+                                        <mat-card class="mt-2">
+                                            <mat-card-content>
+                                                <h3 class="subsubtitle primary-color">{{exercise.title}}</h3>
+                                                <p>{{exercise.description}}</p>
+                                            </mat-card-content>
+                                        </mat-card>
+                                    </div>
+
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+
+                    </div>
+                    <div class="row" *ngIf="edit == true">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-12 mt-2">
+                                    <mat-card [formGroup]="mainGoalForm">
+                                        <mat-card-content>
+                                            <h2 class="primary-color subtitle">
+                                                Hoofddoel
+                                            </h2>
+                                            <mat-form-field appearance="outline" style="width: 100%;" class="mt-2">
+                                                <mat-label>Voer hier het hoofddoel in.</mat-label>
+                                                <input formControlName="mainGoal" matInput>
+                                            </mat-form-field>
+                                            <button mat-button class="primary-background mr-2 mb-1 float-right"
+                                                (click)="editMainGoal()">Opslaan</button>
+                                        </mat-card-content>
+                                    </mat-card>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 mt-2">
+                                    <mat-card>
+                                        <mat-card-content>
+                                            <h2 class="subtitle primary-color">Subdoelen</h2>
+                                            <form [formGroup]="subGoalsForm">
+                                                <div formArrayName="subGoals"
+                                                    *ngFor="let subGoal of subGoals.controls; let i = index">
+                                                    <mat-form-field appearance='outline' class="ml-2"
+                                                        style="width: 100%;">
+                                                        <mat-label>Voer hier een subdoel in.</mat-label>
+                                                        <textarea matInput [formControlName]='i' type="text"></textarea>
+                                                    </mat-form-field>
+                                                </div>
+                                            </form>
+                                            <div class="float-right mr-2">
+                                                <button mat-button class="primary-background mb-1 mr-2"
+                                                    (click)="addSubGoal()">Extra doel</button>
+                                                <button mat-button class="primary-background mb-1 mr-2"
+                                                    (click)="editSubGoals()">Opslaan</button>
+                                            </div>
+                                        </mat-card-content>
+                                    </mat-card>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-card>
+                                <mat-card-content>
+                                    <h2 class="primary-color subtitle">
+                                        Oefeningen
+                                    </h2>
+                                    <div [formGroup] ="exercisesForm">
+                                        <div formArrayName="exercises" *ngFor="let exercise of exercisesForm.get('exercises').controls; let i = index">
+                                            <form [formGroupName]="i">    
+                                                <h3 class="subsubtitle primary-color">Oefening {{i + 1}}</h3>                                         
+                                                                                       
+                                                        <mat-form-field appearance='outline' class="ml-2" style="width: 100%;">
+                                                            <mat-label>Voer hier de titel van een oefening in.</mat-label>
+                                                            <input matInput formControlName="title"
+                                                                type="text">
+                                                        </mat-form-field>
+            
+                                                        <mat-form-field appearance='outline' class="ml-2" style="width: 100%;">
+                                                            <mat-label>Voer hier de beschrijving van een oefening in.</mat-label>
+                                                            <textarea matInput formControlName="description"
+                                                                type="text"></textarea>
+                                                        </mat-form-field>
+                                                    
+                                                
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                    
+
+                                  
+                                    <div class="float-right mr-2">
+                                        <button mat-button class="primary-background mb-1 mr-2"
+                                            (click)="addExerciseClick()">Extra oefening</button>
+                                        <button mat-button class="primary-background mb-1 mr-2"
+                                            (click)="editExercises()">Opslaan</button>
+                                    </div>
+
+
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

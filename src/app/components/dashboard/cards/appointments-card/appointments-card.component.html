@@ -1,0 +1,62 @@
+<div class="container detailedCard" *ngIf="patient">
+    <div class="row">
+        <div class="col-md-12">
+            <mat-card>
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col-md-10 mt-2">
+                            <h2 class="subtitle primary-color">Afspraken</h2>
+                        </div>
+                        <div class="col-md-2 mt-2">
+                            <button mat-button class="primary-background float-right" (click)="close()">Terug</button>
+                        </div>
+                    </div>
+                    <div class="row ml-2">
+                        <div class="col-md-12" *ngIf="usertype == 'user'">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div *ngFor="let appointment of appointments">
+                                        <mat-card class="mt-2">
+                                            <mat-card-content>
+                                                <h2 class="subtitle primary-color">{{appointment.description}}</h2>
+                                                <p>Datum: {{appointment.date | date : 'short'}}</p>
+                                                <p>Behandelaar: {{appointment.practitioner.firstName!}}
+                                                    {{appointment.practitioner.lastName!}}</p>
+
+                                            </mat-card-content>
+                                        </mat-card>
+                                    </div>
+                                </div>
+                                <div class="col md-4">
+                                    <mat-card style="height: 300px !important;">
+                                        <mat-card-content>
+                                            <h2 class="subtitle primary-color">Nieuwe afspraak</h2>
+                                            <form [formGroup]="form">
+                                                <mat-form-field appearance="outline" style="width: 100%;" class="mt-2">
+                                                    <mat-label>Beschrijving van de afspraak</mat-label>
+                                                    <input formControlName="description" matInput>
+                                                </mat-form-field>
+                                                <mat-form-field appearance="outline" style="width: 100%;" class="mt-2">
+                                                    <mat-label>Datum</mat-label>
+                                                    <input matInput  formControlName="date" type="datetime-local">                                                   
+                                                </mat-form-field>
+                                                
+                                            </form>
+                                            <button mat-button class="primary-background float-right mt-2 mr-2" (click)="addAppointment()">Bevestig</button>
+                                        </mat-card-content>
+                                    </mat-card>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </mat-card-content>
+                <mat-card-actions>
+                    
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

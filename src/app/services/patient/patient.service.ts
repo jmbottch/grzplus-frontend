@@ -36,5 +36,21 @@ export class PatientService {
     return this.http.put<any>(this._patients + "/" + patientId, data)
   }
 
+  addAppointment(patientId : any, data : any) {
+    return this.http.put<any>(this._patients + "/" + patientId + "/addAppointment", data)
+  }
+
+  editMainGoal(patientId : any, data : any) {
+    return this.http.put<any>(this._patients + "/" + patientId + "/editMainGoal", data)
+  }
+
+  editSubGoals(patientId : any, data : any) {
+    return this.http.put<any>(this._patients + "/" + patientId + "/editSubGoals", data)
+  }
+
+  editExercises(patientId : any, data : any) {
+    return this.http.put<any>(this._patients + "/" + patientId + "/editExercises", data)
+  }
+
 
 }
