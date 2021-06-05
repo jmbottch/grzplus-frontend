@@ -40,19 +40,9 @@
     </div>
     <div class="row">
         <div class="col-md-4 mt-2">
-            <mat-card style="background: whitesmoke;" (click)="onSelectCard('info')">
-                <mat-card-header>
-                    <mat-card-title *ngIf="!selected">
-                        Gegevens
-                    </mat-card-title>
-
-                    <mat-card-title *ngIf="selected">
-                        {{selected.firstName}} {{selected.lastName}}
-                    </mat-card-title>
-
-                </mat-card-header>
+            <mat-card style="background: whitesmoke;" (click)="onSelectCard('info')">                
                 <mat-card-content style="height: 215px; ">
-                    <hr />
+                    <h2 class="primary-color subtitle">Gegevens</h2>
                     <div class="ml-2" *ngIf="selected">
                         <div class="row">
                             <div class="col-md-3">
@@ -77,14 +67,9 @@
             </mat-card>
         </div>
         <div class="col-md-4 mt-2">
-            <mat-card style="background: whitesmoke;" (click)="onSelectCard('practitioners')">
-                <mat-card-header>
-                    <mat-card-title>
-                        Behandelaren
-                    </mat-card-title>
-                </mat-card-header>
+            <mat-card style="background: whitesmoke;" (click)="onSelectCard('practitioners')">                
                 <mat-card-content style="height: 215px; ">
-                    <hr />
+                    <h2 class="primary-color subtitle">Behandelaren</h2>
                     <div *ngIf="selected && selected.practitioners" style="height: 115px;">
                         <ul>
                             <li *ngFor="let practitioner of selected.practitioners"
@@ -115,18 +100,16 @@
             <div class="row mt-1" style="height: 50%;">
                 <div class="col-md-12">
                     <mat-card (click)="onSelectCard('advice')" style="height: 100%;">
-                        <mat-card-header>
-                            <mat-card-title>Slik | Dieet advies</mat-card-title>
-                        </mat-card-header>
+                        <h2 class="primary-color subtitle">Slik- | Dieetadvies</h2>                        
+                        <p *ngIf="selected">Bekijk hier het slik- en dieetadvies</p>
                     </mat-card>
                 </div>
             </div>
             <div class="row mt-1" style="height: 50%;">
                 <div class="col-md-12">
                     <mat-card (click)="onSelectCard('adl')" style="height: 100%;">
-                        <mat-card-header>
-                            <mat-card-title>ADL</mat-card-title>
-                        </mat-card-header>
+                        <h2 class="primary-color subtitle">ADL</h2>
+                        <p  *ngIf="selected">Bekijk hier de hulp bij Algemene Dagelijkse Levensverichtingen</p>
                     </mat-card>
                 </div>
             </div>
@@ -135,13 +118,9 @@
     <div class="row mt-3">
         <div class="col-md-4">
             <mat-card style="background: whitesmoke;" (click)="onSelectCard('goals')">
-                <mat-card-header>
-                    <mat-card-title>
-                        Doelen en Oefeningen
-                    </mat-card-title>
-                </mat-card-header>
+                
                 <mat-card-content style="height: 150px; ">
-                    <hr />
+                    <h2 class="primary-color subtitle">Doelen en Oefeningen</h2>
                     <div *ngIf="selected">
                         Bekijk hier de doelen en oefeningen
                     </div>
@@ -153,15 +132,11 @@
         </div>
         <div class="col-md-4">
             <mat-card style="background: whitesmoke;" (click)="onSelectCard('appointments')">
-                <mat-card-header>
-                    <mat-card-title>
-                        Afspraken
-                    </mat-card-title>
-                </mat-card-header>
+                
                 <mat-card-content style="height: 150px; ">
-                    <hr />
+                    <h2 class="primary-color subtitle">Afspraken</h2>
                     <div *ngIf="selected" class="ml-2">
-                        Bekijk hier uw afspraken!
+                        Bekijk hier de afspraken van de revalidant
                     </div>
                     
 
@@ -171,15 +146,11 @@
         </div>
         <div class="col-md-4">
             <mat-card style="background: whitesmoke;" (click)="onSelectCard('comments')">
-                <mat-card-header>
-                    <mat-card-title>
-                        Opmerkingen
-                    </mat-card-title>
-                </mat-card-header>
+                
                 <mat-card-content style="height: 150px; ">
-                    <hr />
+                    <h2 class="primary-color subtitle">Opmerkingen</h2>
                     <div *ngIf="selected">
-                        <div *ngFor="let comment of selected.comments.reverse().slice(0,6)">
+                        <div *ngFor="let comment of selected.comments.reverse().slice(0,3)">
                             {{comment.author}} zei: "{{comment.content}}"
                         </div>
                     </div>
@@ -206,9 +177,6 @@
 </div>
 <div *ngIf="selectedCard == 'practitioners'">
     <app-practitioners-card [patient]="selected"></app-practitioners-card>
-</div>
-<div *ngIf="selectedCard == 'mobility'">
-    
 </div>
 <div *ngIf="selectedCard == 'comments'">
     <app-comments-card [patient]="selected"></app-comments-card>

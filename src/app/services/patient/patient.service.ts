@@ -52,5 +52,9 @@ export class PatientService {
     return this.http.put<any>(this._patients + "/" + patientId + "/editExercises", data)
   }
 
+  editMobilityAndTransfer(patientId : any, data : any) {
+    return this.http.put<any>(this._patients+ "/" + patientId + "/editMobilityAndTransfer", data)
+  }
+
 
 }

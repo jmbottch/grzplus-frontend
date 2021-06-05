@@ -1,61 +1,160 @@
+<mat-card class="info-box">
+    <mat-card-content *ngIf="patient">
 
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>Mobiliteit | Transfer</mat-card-title>
-        </mat-card-header>
-        <mat-card-content *ngIf="patient">
-            <hr />
-            <div class="row mt-2">
-                <div class="col-md-3">
-                    <h2 class="subtitle primary-color">Transfer in en uit bed</h2>
-                    <div class="row">
-                        <div class="col-md-5 text-center">
-                            <img src="{{patient!.transfer.transfer.image!}}" class="img-fluid mobicon" />
-                        </div>
-                        <div class="col-md-5 text-center">
-                            <img src="{{patient!.transfer.facscore.image!}}" class="img-fluid mobicon" />
-                        </div>
+        <div *ngIf="usertype == 'user'"  class="row ml-2">
+            <div class="col-md-10">
+                <h2 class="primary-color subtitle">Mobiliteit | Transfer</h2>
+            </div>
+            <div class="col-md-2">
+                <button mat-button class="float-right primary-background mr-2" (click)="toggleEdit()">Bewerk</button>
+            </div>
+        </div>
+
+        <div *ngIf="usertype == 'patient'" class="row ml-2">
+            <h2 class="primary-color subtitle">Mobiliteit | Transfer</h2>
+        </div>
+
+
+        <div class="row ml-2 mt-2" *ngIf="edit == false">
+            <div class="col-md-3">
+                <h2 class="subsubtitle primary-color">Transfer<br/> in en uit bed</h2>
+                <div class="row">
+                    <div class="col-md-5 text-center">
+                        <img src="{{patient!.transfer.transfer.image!}}" class="img-fluid mobicon" />
+                    </div>
+                    <div class="col-md-5 text-center">
+                        <img src="{{patient!.transfer.facscore.image!}}" class="img-fluid mobicon" />
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <h2 class="subtitle primary-color">Mobiliteit op de kamer</h2>
-                    <div class="row">
-                        <div class="col-md-5 text-center">
-                            <img src="{{patient!.mobilityInRoom!.mobility.image!}}"
-                                class="img-fluid mobicon" />
-                        </div>
-                        <div class="col-md-5 text-center">
-                            <img src="{{patient!.mobilityInRoom!.facscore.image!}}"
-                                class="img-fluid mobicon" />
-                        </div>
+            </div>
+            <div class="col-md-3">
+                <h2 class="subsubtitle primary-color">Mobiliteit<br/> op de kamer</h2>
+                <div class="row">
+                    <div class="col-md-5 text-center">
+                        <img src="{{patient!.mobilityInRoom!.mobility.image!}}" class="img-fluid mobicon" />
                     </div>
-                </div>           
-                <div class="col-md-3">
-                    <h2 class="subtitle primary-color">Mobiliteit op de afdeling</h2>
-                    <div class="row">
-                        <div class="col-md-5 text-center">
-                            <img src="{{patient!.mobilityOnDepartment!.mobility.image!}}"
-                                class="img-fluid mobicon" />
-                        </div>
-                        <div class="col-md-5 text-center">
-                            <img src="{{patient!.mobilityOnDepartment!.facscore.image!}}"
-                                class="img-fluid mobicon" />
-                        </div>
+                    <div class="col-md-5 text-center">
+                        <img src="{{patient!.mobilityInRoom!.facscore.image!}}" class="img-fluid mobicon" />
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <h2 class="subtitle primary-color">Mobiliteit buiten de afdeling</h2>
-                    <div class="row">
-                        <div class="col-md-5 text-center">
-                            <img src="{{patient!.mobilityOffDepartment!.mobility.image!}}"
-                                class="img-fluid mobicon" />
+            </div>
+            <div class="col-md-3">
+                <h2 class="subsubtitle primary-color">Mobiliteit<br/> op de afdeling</h2>
+                <div class="row">
+                    <div class="col-md-5 text-center">
+                        <img src="{{patient!.mobilityOnDepartment!.mobility.image!}}" class="img-fluid mobicon" />
+                    </div>
+                    <div class="col-md-5 text-center">
+                        <img src="{{patient!.mobilityOnDepartment!.facscore.image!}}" class="img-fluid mobicon" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h2 class="subsubtitle primary-color">Mobiliteit<br/> buiten de afdeling</h2>
+                <div class="row">
+                    <div class="col-md-5 text-center">
+                        <img src="{{patient!.mobilityOffDepartment!.mobility.image!}}" class="img-fluid mobicon" />
+                    </div>
+                    <div class="col-md-5 text-center">
+                        <img src="{{patient!.mobilityOffDepartment!.facscore.image!}}" class="img-fluid mobicon" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form [formGroup]="editForm">
+            <div class="row mt-2 ml-2" *ngIf="edit == true">
+                <div class="col-md-6">
+                    <div class="row mt-2">
+                        <h2 class="subtitle primary-color">Transfer</h2>
+                        <div formGroupName="transfer">
+                            <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                <mat-label>Transfer</mat-label>
+                                <mat-select placeholder="Selecteer een Transfer methode." formControlName="transfer">
+                                    <mat-option *ngFor="let transfer of transfers" matInput [value]="transfer">
+                                        {{transfer.value}} <img src="{{transfer.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                <mat-label>Fac-Score</mat-label>
+                                <mat-select placeholder="Selecteer een Fac-Score methode." formControlName="facscore">
+                                    <mat-option *ngFor="let fac of facscores" matInput [value]="fac">
+                                        {{fac.value}} <img src="{{fac.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                </mat-select>
+                            </mat-form-field>
                         </div>
-                        <div class="col-md-5 text-center">
-                            <img src="{{patient!.mobilityOffDepartment!.facscore.image!}}"
-                                class="img-fluid mobicon" />
+                    </div>
+                    <div class="row mt-2">
+                        <h2 class="subtitle primary-color">Mobiliteit in de kamer</h2>
+                        <div formGroupName="mobilityInRoom">
+                            <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                <mat-label>Mobiliteit</mat-label>
+                                <mat-select placeholder="Selecteer een Mobiliteit methode." formControlName="mobility">
+                                    <mat-option *ngFor="let mobility of mobilities" matInput [value]="mobility">
+                                        {{mobility.value}} <img src="{{mobility.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                <mat-label>Fac-Score</mat-label>
+                                <mat-select placeholder="Selecteer een Fac-Score methode." formControlName="facscore">
+                                    <mat-option *ngFor="let fac of facscores" matInput [value]="fac">
+                                        {{fac.value}} <img src="{{fac.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>                   
+
+                    
+                </div>
+                <div class="col-md-6">
+                    <div class="row mt-2">
+                        <h2 class="subtitle primary-color">Mobiliteit op de afdeling</h2>
+                        <div formGroupName="mobilityOnDepartment">
+                            <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                <mat-label>Mobiliteit</mat-label>
+                                <mat-select placeholder="Selecteer een Mobiliteit methode." formControlName="mobility">
+                                    <mat-option *ngFor="let mobility of mobilities" matInput [value]="mobility">
+                                        {{mobility.value}} <img src="{{mobility.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                <mat-label>Fac-Score</mat-label>
+                                <mat-select placeholder="Selecteer een Fac-Score methode." formControlName="facscore">
+                                    <mat-option *ngFor="let fac of facscores" matInput [value]="fac">
+                                        {{fac.value}} <img src="{{fac.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <h2 class="subtitle primary-color">Mobiliteit buiten de afdeling</h2>
+                        <div formGroupName="mobilityOffDepartment">
+                            <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                <mat-label>Mobiliteit</mat-label>
+                                <mat-select placeholder="Selecteer een Mobiliteit methode." formControlName="mobility">
+                                    <mat-option *ngFor="let mobility of mobilities" matInput [value]="mobility">
+                                        {{mobility.value}} <img src="{{mobility.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                <mat-label>Fac-Score</mat-label>
+                                <mat-select placeholder="Selecteer een Fac-Score methode." formControlName="facscore">
+                                    <mat-option *ngFor="let fac of facscores" matInput [value]="fac">
+                                        {{fac.value}} <img src="{{fac.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                </mat-select>
+                            </mat-form-field>
                         </div>
                     </div>
                 </div>
             </div>
-        </mat-card-content>
-    </mat-card>
+
+        </form>
+        <div class="row ml-2">
+            <div class="col-md-12">
+                <button mat-button class="primary-background mr-2 float-right" *ngIf="edit == true" (click)="editDetails()">Opslaan</button>
+            </div>
+        </div>
+
+
+
+    </mat-card-content>
+</mat-card>

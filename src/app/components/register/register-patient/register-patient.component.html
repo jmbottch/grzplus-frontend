@@ -2,95 +2,608 @@
     <div class="row">
         <div class="col-md-12">
             <mat-card>
-                <mat-card-header>
-                    <mat-card-title>
-                        Nieuwe Revalidant
-                    </mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                    <hr />
+                <mat-card-content class="ml-2 mt-2">
+                    <h2 class="primary-color title">Nieuwe Revalidant</h2>
                     <form [formGroup]="registerGroup">
 
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <mat-card-subtitle>Persoonsgegevens</mat-card-subtitle>
-                                <!-- firstName -->
-                                <mat-form-field appearance="outline" class="ml-2">
-                                    <mat-label>Voornaam</mat-label>
-                                    <input matInput formControlName="firstName" required>
-                                </mat-form-field>
-                                <!-- lastName -->
-                                <mat-form-field appearance="outline" class="ml-2">
-                                    <mat-label>Achternaam</mat-label>
-                                    <input matInput formControlName="lastName" required>
-                                </mat-form-field>
-                                <!-- dateOfBirth -->
-                                <mat-form-field appearance="outline" class="ml-2">
-                                    <mat-label>Geboortedatum</mat-label>
-                                    <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
-                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                    <mat-datepicker #picker></mat-datepicker>
-                                </mat-form-field>
+                        <mat-card>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h3 class="subsubtitle primary-color">Persoonsgegevens</h3>
+                                    <!-- firstName -->
+                                    <mat-form-field appearance="outline" class="">
+                                        <mat-label>Voornaam</mat-label>
+                                        <input matInput formControlName="firstName" required>
+                                    </mat-form-field>
+                                    <!-- lastName -->
+                                    <mat-form-field appearance="outline" class="">
+                                        <mat-label>Achternaam</mat-label>
+                                        <input matInput formControlName="lastName" required>
+                                    </mat-form-field>
+                                    <!-- dateOfBirth -->
+                                    <mat-form-field appearance="outline" class="">
+                                        <mat-label>Geboortedatum</mat-label>
+                                        <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <h3 class="subsubtitle primary-color">Inloggegevens</h3>
+                                    <!-- email -->
+                                    <mat-form-field appearance="outline" class="">
+                                        <mat-label>E-mail adres</mat-label>
+                                        <input matInput formControlName="email" required>
+                                    </mat-form-field>
+                                    <br />
+                                    <!-- password -->
+                                    <mat-form-field appearance="outline" class="">
+                                        <mat-label>Wachtwoord</mat-label>
+                                        <input matInput formControlName="password" type="password" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <h3 class="subsubtitle primary-color">Praktische info</h3>
+                                    <!-- practitioners -->
+                                    <mat-form-field appearance="outline" class="">
+                                        <mat-label>Behandelaren</mat-label>
+                                        <mat-select placeholder="Selecteer een behandelaar."
+                                            formControlName="practitioners" required>
+                                            <mat-option *ngFor="let pract of practitioners!" matInput [value]="pract">
+                                                {{pract.role}}: {{pract.firstName}} {{pract.lastName}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <!-- resuscitation -->
+                                    <mat-form-field appearance="outline" class="">
+                                        <mat-label>Reanimatiebeleid</mat-label>
+                                        <mat-select placeholder="Selecteer een Reanimatiebeleid."
+                                            formControlName="resuscitation" required>
+                                            <mat-option *ngFor="let resus of resuscitations!" matInput [value]="resus"
+                                                class="text-center">
+                                                <img src="{{resus.image}}" class="img-fluid heart" />
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <!-- dateOfDeparture -->
+                                    <mat-form-field appearance="outline" class="">
+                                        <mat-label>Datum voorlopig ontslag</mat-label>
+                                        <input matInput [matDatepicker]="picker1" formControlName="dateOfDeparture">
+                                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker1></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
                             </div>
-                            <div class="col-md-4">
-                                <mat-card-subtitle>Inloggegevens</mat-card-subtitle>
-                                <!-- email -->
-                                <mat-form-field appearance="outline" class="ml-2">
-                                    <mat-label>E-mail adres</mat-label>
-                                    <input matInput formControlName="email" required>
-                                </mat-form-field>
-                                <br />
-                                <!-- password -->
-                                <mat-form-field appearance="outline" class="ml-2">
-                                    <mat-label>Wachtwoord</mat-label>
-                                    <input matInput formControlName="password" type="password" required>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-4">
-                                <mat-card-subtitle>Praktische info</mat-card-subtitle>
-                                <!-- practitioners -->
-                                <mat-form-field appearance="outline" class="ml-2">
-                                    <mat-label>Behandelaren</mat-label>
-                                    <mat-select placeholder="Selecteer een behandelaar." formControlName="practitioners"
-                                        required>
-                                        <mat-option *ngFor="let pract of practitioners" matInput [value]="pract">
-                                            {{pract.role}}: {{pract.firstName}} {{pract.lastName}}</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                                <!-- resuscitation -->
-                                <mat-form-field appearance="outline" class="ml-2">
-                                    <mat-label>Reanimatiebeleid</mat-label>
-                                    <mat-select placeholder="Selecteer een Reanimatiebeleid."
-                                        formControlName="resuscitation" required>
-                                        <mat-option *ngFor="let resus of resuscitations" matInput [value]="resus"
-                                            class="text-center">
-                                            <img src="{{resus.image}}" class="img-fluid heart" />
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                                <!-- dateOfDeparture -->
-                                <mat-form-field appearance="outline" class="ml-2">
-                                    <mat-label>Datum voorlopig ontslag</mat-label>
-                                    <input matInput [matDatepicker]="picker1" formControlName="dateOfDeparture">
-                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                                    <mat-datepicker #picker1></mat-datepicker>
-                                </mat-form-field>
-                                <!-- roomNr -->
-                                <mat-form-field appearance="outline" class="ml-2">
-                                    <mat-label>Kamernummer</mat-label>
-                                    <input matInput formControlName="roomNr" type="string" required>
-                                </mat-form-field>
+                        </mat-card>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <h2 class="subtitle primary-color">Slik- en dieetadvies</h2>
+                                <div class="row mt-2">
+                                    <div class="col-md-12">
+                                        <div formGroupName="dietAdvice">
+                                            <mat-card>
+                                                <h2 class="card-subtitle primary-color">Dieetadvies</h2>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <p class="subsubtitle">Ontbijt</p>
+                                                        <mat-form-field appearance="outline" style="width:100%;">
+                                                            <mat-label>Tijd van ontbijt</mat-label>
+                                                            <input matInput formControlName="breakfast" type="time">
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <p class="subsubtitle">Lunch</p>
+                                                        <mat-form-field appearance="outline" style="width:100%">
+                                                            <mat-label>Tijd van de lunch</mat-label>
+                                                            <input matInput formControlName="lunch" type="time">
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <p class="subsubtitle">Diner</p>
+                                                        <mat-form-field appearance="outline" style="width:100%">
+                                                            <mat-label>Tijd van het diner</mat-label>
+                                                            <input matInput formControlName="dinner" type="time">
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                            </mat-card>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div formGroupName="swallowAdvice">
+                                    <div class="row mt-2">
+                                        <div class="col-md-12">
+                                            <mat-card>
+                                                <div formGroupName="consistency" class="col-md-12">
 
+                                                    <h2 class="card-subtitle primary-color">Consistentie</h2>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <p class="subsubtitle">Drinken</p>
+                                                            <mat-form-field appearance="outline" style="width: 100%;">
+                                                                <mat-label>Beschrijf hier de consistentie van het
+                                                                    drinken.
+                                                                    <br />bijvoorbeeld: dikte van karnemelk, aantal
+                                                                    schepjes
+                                                                    verdikkings middel, etc.
+                                                                </mat-label>
+                                                                <textarea formControlName="drinks" matInput></textarea>
+                                                            </mat-form-field>
+
+                                                            <p class="subsubtitle">Normale Warme Maaltijd</p>
+                                                            <mat-form-field appearance="outline" style="width: 100%;">
+                                                                <mat-label>Beschrijf hier de consistentie van de warme
+                                                                    maaltijd
+                                                                </mat-label>
+                                                                <textarea formControlName="regularmeal"
+                                                                    matInput></textarea>
+                                                            </mat-form-field>
+
+                                                            <p class="subsubtitle">Soep</p>
+                                                            <mat-form-field appearance="outline" style="width: 100%;">
+                                                                <mat-label>Beschrijf hier de consistentie van de soep
+                                                                </mat-label>
+                                                                <textarea formControlName="soup" matInput></textarea>
+                                                            </mat-form-field>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p class="subsubtitle">Brood</p>
+                                                            <mat-form-field appearance="outline" style="width: 100%;">
+                                                                <mat-label>Beschrijf hier de consistentie van de brood
+                                                                    (of pap)
+                                                                    maaltijden <br />bijvoorbeeld: broodstukjes max 2x2
+                                                                    cm
+                                                                </mat-label>
+                                                                <textarea formControlName="bread" matInput></textarea>
+                                                            </mat-form-field>
+
+                                                            <p class="subsubtitle">Tussendoor</p>
+                                                            <mat-form-field appearance="outline" style="width: 100%;">
+                                                                <mat-label>Beschrijf hier de consistentie van de
+                                                                    tussendoortjes
+                                                                </mat-label>
+                                                                <textarea formControlName="snacks" matInput></textarea>
+                                                            </mat-form-field>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </mat-card>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-12">
+                                            <mat-card>
+                                                <mat-card-content>
+                                                    <h2 class="card-subtitle primary-color">Begeleiding</h2>
+                                                    <div formArrayName="assistance"
+                                                        *ngFor="let assist of assistance.controls; let i = index">
+                                                        <mat-form-field appearance='outline' class=""
+                                                            style="width: 100%;">
+                                                            <mat-label>Voer hier informatie in over begeleiding
+                                                                <br />bij
+                                                                het eten.
+                                                            </mat-label>
+                                                            <textarea matInput [formControlName]='i'
+                                                                type="text"></textarea>
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <button mat-button class="primary-background float-right mb-1"
+                                                        (click)="addAssistance()">Extra item</button>
+                                                </mat-card-content>
+                                            </mat-card>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mt-2">
+                                            <mat-card>
+                                                <mat-card-content>
+                                                    <h2 class="card-subtitle primary-color">Houding en
+                                                        compensatiebewegingen
+                                                    </h2>
+                                                    <div formArrayName="movements"
+                                                        *ngFor="let movement of movements.controls; let i = index">
+                                                        <mat-form-field appearance='outline' class=""
+                                                            style="width: 100%;">
+                                                            <mat-label>Voer hier informatie in over (zit)houding
+                                                                <br />en
+                                                                compensatiebewegingen bij het eten.
+                                                            </mat-label>
+                                                            <textarea matInput [formControlName]='i'
+                                                                type="text"></textarea>
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <button mat-button class="primary-background float-right mb-1"
+                                                        (click)="addMovement()">Extra item</button>
+                                                </mat-card-content>
+                                            </mat-card>
+                                        </div>
+                                        <div class="col-md-6 mt-2">
+                                            <mat-card>
+                                                <mat-card-content>
+                                                    <h2 class="card-subtitle primary-color">Hulpmiddelen</h2>
+                                                    <div formArrayName="tools"
+                                                        *ngFor="let tool of tools.controls; let i = index">
+                                                        <mat-form-field appearance='outline' class=""
+                                                            style="width: 100%;">
+                                                            <mat-label>Voer hier informatie in over hulpmiddelen
+                                                                <br />bij
+                                                                het eten.
+                                                            </mat-label>
+                                                            <textarea matInput [formControlName]='i'
+                                                                type="text"></textarea>
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <button mat-button class="primary-background float-right mb-1"
+                                                        (click)="addTool()">Extra item</button>
+                                                </mat-card-content>
+                                            </mat-card>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mt-2">
+                                            <mat-card>
+                                                <mat-card-content>
+                                                    <h2 class="card-subtitle primary-color">Hygiene</h2>
+                                                    <div formArrayName="hygiene"
+                                                        *ngFor="let hyg of hygiene.controls; let i = index">
+                                                        <mat-form-field appearance='outline' class=""
+                                                            style="width: 100%;">
+                                                            <mat-label>Voer hier informatie in over (mond)hygiene
+                                                            </mat-label>
+                                                            <textarea matInput [formControlName]='i'
+                                                                type="text"></textarea>
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <button mat-button class="primary-background float-right mb-1"
+                                                        (click)="addHygiene()">Extra item</button>
+                                                </mat-card-content>
+                                            </mat-card>
+                                        </div>
+                                        <div class="col-md-6 mt-2">
+                                            <mat-card>
+                                                <mat-card-content>
+                                                    <h2 class="card-subtitle primary-color">Medicatie</h2>
+                                                    <div formArrayName="medication"
+                                                        *ngFor="let medi of medication.controls; let i = index">
+                                                        <mat-form-field appearance='outline' class=""
+                                                            style="width: 100%;">
+                                                            <mat-label>Voer hier informatie in over de medicatie die
+                                                                ingenomen moet worden <br /> Bijvoorbeeld: Gemalen,
+                                                                opgelost
+                                                                etc.</mat-label>
+                                                            <textarea matInput [formControlName]='i'
+                                                                type="text"></textarea>
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <button mat-button class="primary-background float-right mb-1"
+                                                        (click)="addMedication()">Extra item</button>
+                                                </mat-card-content>
+                                            </mat-card>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <!-- <div class="row mt-2">
+                            <div class="col-md-12">
+                                <h2 class="subtitle primary-color">ADL</h2>
+                                <mat-card>
+                                    TO BE PROGRAMMED
+
+                                </mat-card>
+                            </div>
+                        </div> -->
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <h2 class="subtitle primary-color">Doelen</h2>
+                                <mat-card>
+                                    <h3 class="subsubtitle primary-color">Hoofdoel</h3>
+                                    <mat-form-field appearance="outline" style="width: 100%;" class="mt-2">
+                                        <mat-label>Voer hier het hoofddoel in.</mat-label>
+                                        <input formControlName="mainGoal" matInput>
+                                    </mat-form-field>
+                                    <h3 class="subsubtitle primary-color">Subdoelen</h3>
+                                    <div formArrayName="subGoals"
+                                        *ngFor="let subGoal of subGoals.controls; let i = index">
+                                        <mat-form-field appearance='outline' class="" style="width: 100%;">
+                                            <mat-label>Voer hier een subdoel in.</mat-label>
+                                            <input matInput [formControlName]='i' type="text">
+                                        </mat-form-field>
+                                    </div>
+                                    <button mat-button class="primary-background mr-2 float-right"
+                                        (click)="addSubGoal()">Extra doel</button>
+                                </mat-card>
+                            </div>
+                        </div>
+
+                        <div class="row mt-5">
+                            <div class="col-md-12">
+                                <h2 class="subtitle primary-color">Mobiliteit en Transfer</h2>
+                            </div>
+                        </div>
+
+
+                        <mat-card>
+                            <div class="row mt-2">
+                                <div class="col-md-3">
+                                    <h3 class="card-subtitle primary-color">Transfer<br/>in/uit bed</h3>
+                                    <div formGroupName="transfer">
+                                        <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                            <mat-label>Transfer</mat-label>
+                                            <mat-select placeholder="Selecteer een Transfer methode."
+                                                formControlName="transfer">
+                                                <mat-option *ngFor="let transfer of transfers" matInput
+                                                    [value]="transfer">
+                                                    {{transfer.value}} <img src="{{transfer.image}}"
+                                                        class="img-fluid float-right" style="max-height: 50px;">
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                        <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                            <mat-label>Fac-Score</mat-label>
+                                            <mat-select placeholder="Selecteer een Fac-Score."
+                                                formControlName="facscore">
+                                                <mat-option *ngFor="let fac of facscores!" matInput [value]="fac">
+                                                    {{fac.value}} <img src="{{fac.image}}" class="img-fluid float-right"
+                                                        style="max-height: 50px;"></mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <h3 class="card-subtitle primary-color">Mobiliteit<br/> op de kamer</h3>
+                                    <div formGroupName="mobilityInRoom">
+                                        <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                            <mat-label>Mobiliteit</mat-label>
+                                            <mat-select placeholder="Selecteer een Mobiliteit methode." formControlName="mobility">
+                                                <mat-option *ngFor="let mobility of mobilities!" matInput [value]="mobility">
+                                                    {{mobility.value}} <img src="{{mobility.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                        <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                            <mat-label>Fac-Score</mat-label>
+                                            <mat-select placeholder="Selecteer een Fac-Score." formControlName="facscore">
+                                                <mat-option *ngFor="let fac of facscores!" matInput [value]="fac">
+                                                    {{fac.value}} <img src="{{fac.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <h3 class="card-subtitle primary-color">Mobiliteit<br/> op de afdeling</h3>
+                                    <div formGroupName="mobilityOnDepartment">
+                                        <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                            <mat-label>Mobiliteit</mat-label>
+                                            <mat-select placeholder="Selecteer een Mobiliteit methode." formControlName="mobility">
+                                                <mat-option *ngFor="let mobility of mobilities!" matInput [value]="mobility">
+                                                    {{mobility.value}} <img src="{{mobility.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                        <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                            <mat-label>Fac-Score</mat-label>
+                                            <mat-select placeholder="Selecteer een Fac-Score." formControlName="facscore">
+                                                <mat-option *ngFor="let fac of facscores!" matInput [value]="fac">
+                                                    {{fac.value}} <img src="{{fac.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <h3 class="card-subtitle primary-color">Mobiliteit<br/> buiten de afdeling</h3>
+                                    <div formGroupName="mobilityOffDepartment">
+                                        <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                            <mat-label>Mobiliteit</mat-label>
+                                            <mat-select placeholder="Selecteer een Mobiliteit methode." formControlName="mobility">
+                                                <mat-option *ngFor="let mobility of mobilities!" matInput [value]="mobility">
+                                                    {{mobility.value}} <img src="{{mobility.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                        <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                            <mat-label>Fac-Score</mat-label>
+                                            <mat-select placeholder="Selecteer een Fac-Score methode." formControlName="facscore">
+                                                <mat-option *ngFor="let fac of facscores!" matInput [value]="fac">
+                                                    {{fac.value}} <img src="{{fac.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-card>
+
+                        <mat-card class="mt-2">
+                            <mat-card-content>
+                                <h2 class="card-subtitle primary-color">ADL</h2>
+                                <div formGroupName="adl">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-3 text-center">
+                                                    <mat-card>
+                                                        <div class="row ">
+                                                            <div class="col-md-12">
+                                                                <img src="https://i.imgur.com/v3dy8er.png" alt="Douchen-1" class="img-fluid image"/>
+                                                            </div>
+                                                        </div>
+                                                        <hr/>
+                                                        <div class="row">
+                                                           <div class="col-md-12">
+                                                            <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                                                <mat-label>Douchen Bovenlichaam</mat-label>
+                                                                <mat-select placeholder="Selecteer een optie." formControlName="showeringTop">
+                                                                    <mat-option *ngFor="let adl of adls" matInput [value]="adl">
+                                                                        {{adl.value}} <img src="{{adl.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                                                </mat-select>
+                                                            </mat-form-field>
+                                                           </div>
+                                                        </div>                                                       
+                                                    </mat-card>                            
+                                                </div>
+                                                <div class="col-md-3 text-center">
+                                                    <mat-card>
+                                                        <div class="row ">
+                                                            <div class="col-md-12">
+                                                                <img src="https://i.imgur.com/JiEsBYs.png" alt="Douchen-2" class="img-fluid image"/>
+                                                            </div>
+                                                        </div>
+                                                        <hr/>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                             <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                                                 <mat-label>Douchen Onderlichaam</mat-label>
+                                                                 <mat-select placeholder="Selecteer een optie." formControlName="showeringBottom">
+                                                                     <mat-option *ngFor="let adl of adls" matInput [value]="adl">
+                                                                         {{adl.value}} <img src="{{adl.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                                                 </mat-select>
+                                                             </mat-form-field>
+                                                            </div>
+                                                         </div> 
+                                                    </mat-card>                            
+                                                </div>
+                                                <div class="col-md-3 text-center">
+                                                    <mat-card>
+                                                        <div class="row ">
+                                                            <div class="col-md-12">
+                                                                <img src="https://i.imgur.com/bIKw58P.png" alt="Wassen-1" class="img-fluid image"/>
+                                                            </div>
+                                                        </div>
+                                                        <hr/>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                             <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                                                 <mat-label>Wassen Bovenlichaam</mat-label>
+                                                                 <mat-select placeholder="Selecteer een optie." formControlName="washingTop">
+                                                                     <mat-option *ngFor="let adl of adls" matInput [value]="adl">
+                                                                         {{adl.value}} <img src="{{adl.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                                                 </mat-select>
+                                                             </mat-form-field>
+                                                            </div>
+                                                         </div> 
+                                                    </mat-card>                            
+                                                </div>
+                                                <div class="col-md-3 text-center">
+                                                    <mat-card>
+                                                        <div class="row ">
+                                                            <div class="col-md-12">
+                                                                <img src="https://i.imgur.com/DHEg0yJ.png" alt="Wassen-2" class="img-fluid image"/>
+                                                            </div>
+                                                        </div>
+                                                        <hr/>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                             <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                                                 <mat-label>Wassen Onderlichaam</mat-label>
+                                                                 <mat-select placeholder="Selecteer een optie." formControlName="washingBottom">
+                                                                     <mat-option *ngFor="let adl of adls" matInput [value]="adl">
+                                                                         {{adl.value}} <img src="{{adl.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                                                 </mat-select>
+                                                             </mat-form-field>
+                                                            </div>
+                                                         </div> 
+                                                    </mat-card>                            
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-md-3 text-center">
+                                                    <mat-card>
+                                                        <div class="row ">
+                                                            <div class="col-md-12">
+                                                                <img src="https://i.imgur.com/Hg5yCyG.png" alt="Aankleden bovenlichaam" class="img-fluid image"/>
+                                                            </div>
+                                                        </div>
+                                                        <hr/>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                             <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                                                 <mat-label>Aankleden Bovenlichaam</mat-label>
+                                                                 <mat-select placeholder="Selecteer een optie." formControlName="dressingTop">
+                                                                     <mat-option *ngFor="let adl of adls" matInput [value]="adl">
+                                                                         {{adl.value}} <img src="{{adl.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                                                 </mat-select>
+                                                             </mat-form-field>
+                                                            </div>
+                                                         </div> 
+                                                    </mat-card>                            
+                                                </div>
+                                                <div class="col-md-3 text-center">
+                                                    <mat-card>
+                                                        <div class="row ">
+                                                            <div class="col-md-12">
+                                                                <img src="https://i.imgur.com/1M12m8B.png" alt="Aankleden onderlichaam" class="img-fluid image"/>
+                                                            </div>
+                                                        </div>
+                                                        <hr/>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                             <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                                                 <mat-label>Aankleden onderlichaam</mat-label>
+                                                                 <mat-select placeholder="Selecteer een optie." formControlName="dressingBottom">
+                                                                     <mat-option *ngFor="let adl of adls" matInput [value]="adl">
+                                                                         {{adl.value}} <img src="{{adl.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                                                 </mat-select>
+                                                             </mat-form-field>
+                                                            </div>
+                                                         </div> 
+                                                    </mat-card>                            
+                                                </div>
+                                                <div class="col-md-3 text-center">
+                                                    <mat-card>
+                                                        <div class="row ">
+                                                            <div class="col-md-12">
+                                                                <img src="https://i.imgur.com/Me9JGjI.png" alt="Toilet" class="img-fluid image"/>
+                                                            </div>
+                                                        </div>
+                                                        <hr/>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                             <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                                                 <mat-label>Toilet</mat-label>
+                                                                 <mat-select placeholder="Selecteer een optie." formControlName="toilet">
+                                                                     <mat-option *ngFor="let adl of adls" matInput [value]="adl">
+                                                                         {{adl.value}} <img src="{{adl.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                                                 </mat-select>
+                                                             </mat-form-field>
+                                                            </div>
+                                                         </div> 
+                                                    </mat-card>                            
+                                                </div>
+                                                <div class="col-md-3 text-center">
+                                                    <mat-card>
+                                                        <div class="row ">
+                                                            <div class="col-md-12">
+                                                                <img src="https://i.imgur.com/d8Cvcx2.png" alt="Bed" class="img-fluid image"/>
+                                                            </div>
+                                                        </div>
+                                                        <hr/>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                             <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                                                 <mat-label>Bed</mat-label>
+                                                                 <mat-select placeholder="Selecteer een optie." formControlName="bed">
+                                                                     <mat-option *ngFor="let adl of adls" matInput [value]="adl">
+                                                                         {{adl.value}} <img src="{{adl.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                                                 </mat-select>
+                                                             </mat-form-field>
+                                                            </div>
+                                                         </div> 
+                                                    </mat-card>                            
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+
+
                     </form>
-                    <hr/>
+                    <div class="row mt-5">
+                        <div class="col-md-12">
+                            <button mat-button type="submit" class="mt-2 mr-2 primary-background float-right"
+                                (click)="register()">Opslaan</button>
+                        </div>
+                    </div>
                 </mat-card-content>
-                <mat-card-actions class="text-right">
-                    <button mat-raised-button type="submit" class="mb-2 mr-3" color="primary"
-                        (click)="register()">Opslaan</button>
-                </mat-card-actions>
             </mat-card>
         </div>
     </div>

@@ -1,16 +1,324 @@
 <div class="container detailedCard"  *ngIf="patient" >
     <div class="row">
         <div class="col-md-12">
-            <mat-card >
-                <mat-card-header>
-                    <h2 class="primary-color title mr-2">Algemene Dagelijkse Levensverrichtingen</h2>
-                </mat-card-header>
-                <mat-card-content>
-                    {{patient!.firstName}} {{patient!.lastName}}
-                </mat-card-content>
-                <mat-card-actions>
-                    <button mat-raised-button (click)="close()">Jo later</button>
-                </mat-card-actions>
+            <mat-card >              
+                
+                <mat-card-content class="ml-2">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h2 class="primary-color title mr-2">Algemene Dagelijkse Levensverrichtingen</h2>
+                        </div>
+                        <div class="col-md-4">
+                            <button mat-button class="primary-background mr-2 float-right" (click)="toggleEdit()">Bewerk</button>
+                            <button mat-button class="primary-background mr-2 float-right" (click)="close()">Terug</button>
+                        </div>
+                    </div>
+                    <div *ngIf="edit == false">
+                        <div class="row">
+                            <div class="col-md-3 text-center">
+                                <mat-card>
+                                    <div class="row ">
+                                        <div class="col-md-12">
+                                            <img src="https://i.imgur.com/v3dy8er.png" alt="Douchen-1" class="img-fluid image"/>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <img src="{{patient.adl.showeringTop.image}}" alt="{{patient.adl.showeringTop.value}}" class="img-fluid value"/>
+                                        </div>
+                                    </div>
+                                </mat-card>                            
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <mat-card>
+                                    <div class="row ">
+                                        <div class="col-md-12">
+                                            <img src="https://i.imgur.com/JiEsBYs.png" alt="Douchen-2" class="img-fluid image"/>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <img src="{{patient.adl.showeringBottom.image}}" alt="{{patient.adl.showeringBottom.value}}" class="img-fluid value"/>
+                                        </div>
+                                    </div>
+                                </mat-card>                            
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <mat-card>
+                                    <div class="row ">
+                                        <div class="col-md-12">
+                                            <img src="https://i.imgur.com/bIKw58P.png" alt="Wassen-1" class="img-fluid image"/>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <img src="{{patient.adl.washingTop.image}}" alt="{{patient.adl.washingTop.value}}" class="img-fluid value"/>
+                                        </div>
+                                    </div>
+                                </mat-card>                            
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <mat-card>
+                                    <div class="row ">
+                                        <div class="col-md-12">
+                                            <img src="https://i.imgur.com/DHEg0yJ.png" alt="Wassen-2" class="img-fluid image"/>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <img src="{{patient.adl.washingBottom.image}}" alt="{{patient.adl.washingBottom.value}}" class="img-fluid value"/>
+                                        </div>
+                                    </div>
+                                </mat-card>                            
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-3 text-center">
+                                <mat-card>
+                                    <div class="row ">
+                                        <div class="col-md-12">
+                                            <img src="https://i.imgur.com/Hg5yCyG.png" alt="Aankleden bovenlichaam" class="img-fluid image"/>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <img src="{{patient.adl.dressingTop.image}}" alt="{{patient.adl.dressingTop.value}}" class="img-fluid value"/>
+                                        </div>
+                                    </div>
+                                </mat-card>                            
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <mat-card>
+                                    <div class="row ">
+                                        <div class="col-md-12">
+                                            <img src="https://i.imgur.com/1M12m8B.png" alt="Aankleden onderlichaam" class="img-fluid image"/>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <img src="{{patient.adl.dressingBottom.image}}" alt="{{patient.adl.dressingBottom.value}}" class="img-fluid value"/>
+                                        </div>
+                                    </div>
+                                </mat-card>                            
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <mat-card>
+                                    <div class="row ">
+                                        <div class="col-md-12">
+                                            <img src="https://i.imgur.com/Me9JGjI.png" alt="Toilet" class="img-fluid image"/>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <img src="{{patient.adl.toilet.image}}" alt="{{patient.adl.toilet.value}}" class="img-fluid value"/>
+                                        </div>
+                                    </div>
+                                </mat-card>                            
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <mat-card>
+                                    <div class="row ">
+                                        <div class="col-md-12">
+                                            <img src="https://i.imgur.com/d8Cvcx2.png" alt="Bed" class="img-fluid image"/>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <img src="{{patient.adl.bed.image}}" alt="{{patient.adl.bed.value}}" class="img-fluid value"/>
+                                        </div>
+                                    </div>
+                                </mat-card>                            
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div *ngIf="edit == true" [formGroup]="editForm">
+                         <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3 text-center">
+                                        <mat-card>
+                                            <div class="row ">
+                                                <div class="col-md-12">
+                                                    <img src="https://i.imgur.com/v3dy8er.png" alt="Douchen-1" class="img-fluid image"/>
+                                                </div>
+                                            </div>
+                                            <hr/>
+                                            <div class="row">
+                                               <div class="col-md-12">
+                                                <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                                    <mat-label>Douchen Bovenlichaam</mat-label>
+                                                    <mat-select placeholder="Selecteer een optie." formControlName="showeringTop">
+                                                        <mat-option *ngFor="let adl of adls" matInput [value]="adl">
+                                                            {{adl.value}} <img src="{{adl.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                               </div>
+                                            </div>                                                       
+                                        </mat-card>                            
+                                    </div>
+                                    <div class="col-md-3 text-center">
+                                        <mat-card>
+                                            <div class="row ">
+                                                <div class="col-md-12">
+                                                    <img src="https://i.imgur.com/JiEsBYs.png" alt="Douchen-2" class="img-fluid image"/>
+                                                </div>
+                                            </div>
+                                            <hr/>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                 <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                                     <mat-label>Douchen Onderlichaam</mat-label>
+                                                     <mat-select placeholder="Selecteer een optie." formControlName="showeringBottom">
+                                                         <mat-option *ngFor="let adl of adls" matInput [value]="adl">
+                                                             {{adl.value}} <img src="{{adl.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                                     </mat-select>
+                                                 </mat-form-field>
+                                                </div>
+                                             </div> 
+                                        </mat-card>                            
+                                    </div>
+                                    <div class="col-md-3 text-center">
+                                        <mat-card>
+                                            <div class="row ">
+                                                <div class="col-md-12">
+                                                    <img src="https://i.imgur.com/bIKw58P.png" alt="Wassen-1" class="img-fluid image"/>
+                                                </div>
+                                            </div>
+                                            <hr/>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                 <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                                     <mat-label>Wassen Bovenlichaam</mat-label>
+                                                     <mat-select placeholder="Selecteer een optie." formControlName="washingTop">
+                                                         <mat-option *ngFor="let adl of adls" matInput [value]="adl">
+                                                             {{adl.value}} <img src="{{adl.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                                     </mat-select>
+                                                 </mat-form-field>
+                                                </div>
+                                             </div> 
+                                        </mat-card>                            
+                                    </div>
+                                    <div class="col-md-3 text-center">
+                                        <mat-card>
+                                            <div class="row ">
+                                                <div class="col-md-12">
+                                                    <img src="https://i.imgur.com/DHEg0yJ.png" alt="Wassen-2" class="img-fluid image"/>
+                                                </div>
+                                            </div>
+                                            <hr/>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                 <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                                     <mat-label>Wassen Onderlichaam</mat-label>
+                                                     <mat-select placeholder="Selecteer een optie." formControlName="washingBottom">
+                                                         <mat-option *ngFor="let adl of adls" matInput [value]="adl">
+                                                             {{adl.value}} <img src="{{adl.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                                     </mat-select>
+                                                 </mat-form-field>
+                                                </div>
+                                             </div> 
+                                        </mat-card>                            
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-3 text-center">
+                                        <mat-card>
+                                            <div class="row ">
+                                                <div class="col-md-12">
+                                                    <img src="https://i.imgur.com/Hg5yCyG.png" alt="Aankleden bovenlichaam" class="img-fluid image"/>
+                                                </div>
+                                            </div>
+                                            <hr/>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                 <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                                     <mat-label>Aankleden Bovenlichaam</mat-label>
+                                                     <mat-select placeholder="Selecteer een optie." formControlName="dressingTop">
+                                                         <mat-option *ngFor="let adl of adls" matInput [value]="adl">
+                                                             {{adl.value}} <img src="{{adl.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                                     </mat-select>
+                                                 </mat-form-field>
+                                                </div>
+                                             </div> 
+                                        </mat-card>                            
+                                    </div>
+                                    <div class="col-md-3 text-center">
+                                        <mat-card>
+                                            <div class="row ">
+                                                <div class="col-md-12">
+                                                    <img src="https://i.imgur.com/1M12m8B.png" alt="Aankleden onderlichaam" class="img-fluid image"/>
+                                                </div>
+                                            </div>
+                                            <hr/>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                 <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                                     <mat-label>Aankleden onderlichaam</mat-label>
+                                                     <mat-select placeholder="Selecteer een optie." formControlName="dressingBottom">
+                                                         <mat-option *ngFor="let adl of adls" matInput [value]="adl">
+                                                             {{adl.value}} <img src="{{adl.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                                     </mat-select>
+                                                 </mat-form-field>
+                                                </div>
+                                             </div> 
+                                        </mat-card>                            
+                                    </div>
+                                    <div class="col-md-3 text-center">
+                                        <mat-card>
+                                            <div class="row ">
+                                                <div class="col-md-12">
+                                                    <img src="https://i.imgur.com/Me9JGjI.png" alt="Toilet" class="img-fluid image"/>
+                                                </div>
+                                            </div>
+                                            <hr/>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                 <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                                     <mat-label>Toilet</mat-label>
+                                                     <mat-select placeholder="Selecteer een optie." formControlName="toilet">
+                                                         <mat-option *ngFor="let adl of adls" matInput [value]="adl">
+                                                             {{adl.value}} <img src="{{adl.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                                     </mat-select>
+                                                 </mat-form-field>
+                                                </div>
+                                             </div> 
+                                        </mat-card>                            
+                                    </div>
+                                    <div class="col-md-3 text-center">
+                                        <mat-card>
+                                            <div class="row ">
+                                                <div class="col-md-12">
+                                                    <img src="https://i.imgur.com/d8Cvcx2.png" alt="Bed" class="img-fluid image"/>
+                                                </div>
+                                            </div>
+                                            <hr/>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                 <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
+                                                     <mat-label>Bed</mat-label>
+                                                     <mat-select placeholder="Selecteer een optie." formControlName="bed">
+                                                         <mat-option *ngFor="let adl of adls" matInput [value]="adl">
+                                                             {{adl.value}} <img src="{{adl.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                                     </mat-select>
+                                                 </mat-form-field>
+                                                </div>
+                                             </div> 
+                                        </mat-card>                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div> -->
+                    
+                </mat-card-content>               
             </mat-card>
         </div>
     </div>
