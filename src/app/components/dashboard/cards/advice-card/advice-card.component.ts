@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
 import { PatientService } from 'src/app/services/patient/patient.service';
 import { ClientDashboardComponent } from '../../client-dashboard/client-dashboard.component';
+import { DashboardComponent } from '../../dashboard.component';
 import { UserDashboardComponent } from '../../user-dashboard/user-dashboard.component';
 
 @Component({
@@ -15,12 +16,20 @@ export class AdviceCardComponent implements OnInit {
   edit = false;
   editForm : any;
 
+  usertype! : any;
+
   // assistance! : FormArray;
   
-  constructor(private fb : FormBuilder, private userDashboard : UserDashboardComponent, private clientDashboard : ClientDashboardComponent, private _patient : PatientService) { }
+  constructor(private fb : FormBuilder, 
+    private userDashboard : UserDashboardComponent, 
+    private clientDashboard : ClientDashboardComponent, 
+    private _patient : PatientService,
+    private dashboard : DashboardComponent
+    ) { }
 
 
   ngOnInit(): void {
+    this.usertype = this.dashboard.usertype
     this.editForm = this.fb.group({
       consistency : this.fb.group({
         drinks : ['',[]],

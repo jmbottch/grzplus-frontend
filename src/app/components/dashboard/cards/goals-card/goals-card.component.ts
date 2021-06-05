@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { PatientService } from 'src/app/services/patient/patient.service';
 import { ClientDashboardComponent } from '../../client-dashboard/client-dashboard.component';
+import { DashboardComponent } from '../../dashboard.component';
 import { UserDashboardComponent } from '../../user-dashboard/user-dashboard.component';
 
 @Component({
@@ -13,6 +14,7 @@ export class GoalsCardComponent implements OnInit {
 
   @Input() patient: any;
   edit = false
+  usertype! : any;
 
   //edit forms
   mainGoalForm: any;
@@ -20,9 +22,16 @@ export class GoalsCardComponent implements OnInit {
   exercisesForm: any;
   
 
-  constructor(private userDashboard: UserDashboardComponent, private clientDashboard: ClientDashboardComponent, private fb: FormBuilder, private _patient: PatientService) { }
+  constructor(
+    private userDashboard: UserDashboardComponent, 
+    private clientDashboard: ClientDashboardComponent, 
+    private fb: FormBuilder, 
+    private _patient: PatientService,
+    private dashboard : DashboardComponent
+    ) { }
 
   ngOnInit(): void {
+    this.usertype = this.dashboard.usertype
     this.mainGoalForm = this.fb.group({
       mainGoal: ['', []]
     })

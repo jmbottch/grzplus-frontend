@@ -9,7 +9,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="float-right mr-2">
-                                <button mat-button class="primary-background mr-2"
+                                <button mat-button class="primary-background mr-2" *ngIf="usertype == 'user'"
                                     (click)="toggleEdit()">Bewerk</button>
                                 <button mat-button class="primary-background" (click)="close()">Terug</button>
                             </div>

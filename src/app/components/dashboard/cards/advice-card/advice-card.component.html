@@ -8,7 +8,7 @@
                             <h2 class="primary-color title">Slik- en Dieetadvies</h2>
                         </div>
                         <div class="col-md-3 text-right">
-                            <button mat-button class="primary-background mr-1" (click)="toggleEdit()">Bewerk</button>
+                            <button mat-button class="primary-background mr-1" *ngIf="usertype == 'user'" (click)="toggleEdit()">Bewerk</button>
                             <button mat-button class="primary-background" (click)="close()">Terug</button>
                         </div>
                     </div>

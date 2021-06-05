@@ -49,6 +49,19 @@
                             </div>
 
                         </div>
+                        <div class="col-md-12" *ngIf="usertype == 'patient'">
+                            <div *ngFor="let appointment of appointments">
+                                <mat-card class="mt-2 appointmentslist">
+                                    <mat-card-content>
+                                        <h2 class="subtitle primary-color">{{appointment.description}}</h2>
+                                        <p>Datum: {{appointment.date | date : 'short'}}</p>
+                                        <p>Behandelaar: {{appointment.practitioner.firstName!}}
+                                            {{appointment.practitioner.lastName!}}</p>
+
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                        </div>
                     </div>
 
 
