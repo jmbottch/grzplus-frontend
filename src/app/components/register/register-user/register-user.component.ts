@@ -15,10 +15,11 @@ export class RegisterUserComponent implements OnInit {
 
   registerGroup!: FormGroup;  
   roles = [
-    "Client",
-    "Administrator",
     "Psycholoog",
-    "Arts"
+    "Arts",
+    "Ergotherapeut",
+    "Dietist",
+    "Logopedist"
   ]
   
   constructor(private fb : FormBuilder, private _auth : AuthService, private _router : Router, private _user : UserService, private _patient : PatientService) { }

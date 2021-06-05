@@ -9,8 +9,11 @@
                             <h2 class="primary-color title mr-2">Algemene Dagelijkse Levensverrichtingen</h2>
                         </div>
                         <div class="col-md-4">
-                            <button mat-button class="primary-background mr-2 float-right" (click)="toggleEdit()">Bewerk</button>
-                            <button mat-button class="primary-background mr-2 float-right" (click)="close()">Terug</button>
+                            <div class="float-right">
+
+                                <button mat-button class="primary-background mr-2 " (click)="toggleEdit()">Bewerk</button>
+                                <button mat-button class="primary-background mr-2 " (click)="close()">Terug</button>
+                            </div>
                         </div>
                     </div>
                     <div *ngIf="edit == false">
@@ -139,7 +142,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div *ngIf="edit == true" [formGroup]="editForm">
+                    <div *ngIf="edit == true" [formGroup]="editForm">
                          <div class="row">
                             <div class="col-md-12">
                                 <div class="row">
@@ -310,13 +313,19 @@
                                                      </mat-select>
                                                  </mat-form-field>
                                                 </div>
-                                             </div> 
+                                             </div>
+
                                         </mat-card>                            
                                     </div>
                                 </div>
                             </div>
                         </div> 
-                    </div> -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button mat-button class="primary-background float-right mr-2" (click)="editADL()">Opslaan</button>
+                            </div>
+                        </div>
+                    </div>
                     
                 </mat-card-content>               
             </mat-card>
