@@ -20,10 +20,10 @@
                 <h2 class="subsubtitle primary-color">Transfer<br/> in en uit bed</h2>
                 <div class="row">
                     <div class="col-md-5 text-center">
-                        <img src="{{patient!.transfer.transfer.image!}}" class="img-fluid mobicon" />
+                        <img src="{{patient!.transfer!.transfer!.image!}}" class="img-fluid mobicon" />
                     </div>
                     <div class="col-md-5 text-center">
-                        <img src="{{patient!.transfer.facscore.image!}}" class="img-fluid mobicon" />
+                        <img src="{{patient!.transfer!.facscore!.image!}}" class="img-fluid mobicon" />
                     </div>
                 </div>
             </div>
@@ -31,10 +31,10 @@
                 <h2 class="subsubtitle primary-color">Mobiliteit<br/> op de kamer</h2>
                 <div class="row">
                     <div class="col-md-5 text-center">
-                        <img src="{{patient!.mobilityInRoom!.mobility.image!}}" class="img-fluid mobicon" />
+                        <img src="{{patient!.mobilityInRoom!.mobility!.image!}}" class="img-fluid mobicon" />
                     </div>
                     <div class="col-md-5 text-center">
-                        <img src="{{patient!.mobilityInRoom!.facscore.image!}}" class="img-fluid mobicon" />
+                        <img src="{{patient!.mobilityInRoom!.facscore!.image!}}" class="img-fluid mobicon" />
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                 <h2 class="subsubtitle primary-color">Mobiliteit<br/> op de afdeling</h2>
                 <div class="row">
                     <div class="col-md-5 text-center">
-                        <img src="{{patient!.mobilityOnDepartment!.mobility.image!}}" class="img-fluid mobicon" />
+                        <img src="{{patient!.mobilityOnDepartment!.mobility!.image!}}" class="img-fluid mobicon" />
                     </div>
                     <div class="col-md-5 text-center">
                         <img src="{{patient!.mobilityOnDepartment!.facscore.image!}}" class="img-fluid mobicon" />
@@ -53,7 +53,7 @@
                 <h2 class="subsubtitle primary-color">Mobiliteit<br/> buiten de afdeling</h2>
                 <div class="row">
                     <div class="col-md-5 text-center">
-                        <img src="{{patient!.mobilityOffDepartment!.mobility.image!}}" class="img-fluid mobicon" />
+                        <img src="{{patient!.mobilityOffDepartment!.mobility!.image!}}" class="img-fluid mobicon" />
                     </div>
                     <div class="col-md-5 text-center">
                         <img src="{{patient!.mobilityOffDepartment!.facscore.image!}}" class="img-fluid mobicon" />
@@ -71,14 +71,14 @@
                                 <mat-label>Transfer</mat-label>
                                 <mat-select placeholder="Selecteer een Transfer methode." formControlName="transfer">
                                     <mat-option *ngFor="let transfer of transfers" matInput [value]="transfer">
-                                        {{transfer.value}} <img src="{{transfer.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                        {{transfer.value}} <img src="{{transfer!.image!}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
                                 <mat-label>Fac-Score</mat-label>
                                 <mat-select placeholder="Selecteer een Fac-Score methode." formControlName="facscore">
                                     <mat-option *ngFor="let fac of facscores" matInput [value]="fac">
-                                        {{fac.value}} <img src="{{fac.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                        {{fac.value}} <img src="{{fac!.image!}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
@@ -90,14 +90,14 @@
                                 <mat-label>Mobiliteit</mat-label>
                                 <mat-select placeholder="Selecteer een Mobiliteit methode." formControlName="mobility">
                                     <mat-option *ngFor="let mobility of mobilities" matInput [value]="mobility">
-                                        {{mobility.value}} <img src="{{mobility.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                        {{mobility.value}} <img src="{{mobility!.image!}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
                                 <mat-label>Fac-Score</mat-label>
                                 <mat-select placeholder="Selecteer een Fac-Score methode." formControlName="facscore">
                                     <mat-option *ngFor="let fac of facscores" matInput [value]="fac">
-                                        {{fac.value}} <img src="{{fac.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                        {{fac.value}} <img src="{{fac!.image!}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
@@ -113,14 +113,14 @@
                                 <mat-label>Mobiliteit</mat-label>
                                 <mat-select placeholder="Selecteer een Mobiliteit methode." formControlName="mobility">
                                     <mat-option *ngFor="let mobility of mobilities" matInput [value]="mobility">
-                                        {{mobility.value}} <img src="{{mobility.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                        {{mobility.value}} <img src="{{mobility!.image!}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
                                 <mat-label>Fac-Score</mat-label>
                                 <mat-select placeholder="Selecteer een Fac-Score methode." formControlName="facscore">
                                     <mat-option *ngFor="let fac of facscores" matInput [value]="fac">
-                                        {{fac.value}} <img src="{{fac.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                        {{fac.value}} <img src="{{fac!.image!}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
@@ -132,14 +132,14 @@
                                 <mat-label>Mobiliteit</mat-label>
                                 <mat-select placeholder="Selecteer een Mobiliteit methode." formControlName="mobility">
                                     <mat-option *ngFor="let mobility of mobilities" matInput [value]="mobility">
-                                        {{mobility.value}} <img src="{{mobility.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                        {{mobility.value}} <img src="{{mobility!.image!}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="mt-2" style="width: 100%;">
                                 <mat-label>Fac-Score</mat-label>
                                 <mat-select placeholder="Selecteer een Fac-Score methode." formControlName="facscore">
                                     <mat-option *ngFor="let fac of facscores" matInput [value]="fac">
-                                        {{fac.value}} <img src="{{fac.image}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
+                                        {{fac.value}} <img src="{{fac!.image!}}" class="img-fluid float-right" style="max-height: 50px;"></mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>

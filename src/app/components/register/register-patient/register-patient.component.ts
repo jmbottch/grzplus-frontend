@@ -92,30 +92,30 @@ export class RegisterPatientComponent implements OnInit {
         appointments: this.fb.array([]),
         comments: this.fb.array([]),
         transfer: this.fb.group({
-          transfer: ['', []],
-          facscore: ['', []]
+          transfer: [null, []],
+          facscore: [null, []]
         }),
         mobilityInRoom: this.fb.group({
-          mobility: ['', []],
-          facscore: ['', []]
+          mobility: [null, []],
+          facscore: [null, []]
         }),
         mobilityOnDepartment: this.fb.group({
-          mobility: ['', []],
-          facscore: ['', []]
+          mobility: [null, []],
+          facscore: [null, []]
         }),
         mobilityOffDepartment: this.fb.group({
-          mobility: ['', []],
-          facscore: ['', []]
+          mobility: [null, []],
+          facscore: [null, []]
         }),
         adl: this.fb.group({
-          showeringTop: ['', []],
-          showeringBottom: ['', []],
-          washingTop: ['', []],
-          washingBottom: ['', []],
-          dressingTop: ['', []],
-          dressingBottom: ['', []],
-          toilet: ['', []],
-          bed: ['', []]
+          showeringTop: [null, []],
+          showeringBottom: [null, []],
+          washingTop: [null, []],
+          washingBottom: [null, []],
+          dressingTop: [null, []],
+          dressingBottom: [null, []],
+          toilet: [null, []],
+          bed: [null, []]
         })
       })
 

@@ -82,9 +82,7 @@ export class GoalsCardComponent implements OnInit {
     this._patient.editMainGoal(this.patient._id, this.mainGoalForm.value)
     .subscribe(
       res => {        
-        this.userDashboard.removeSelectedCard()
-        alert("Gegevens zijn bijgewerkt, ververs de pagina om de bijgewerkte gegevens te zien.")
-        
+        this.edit=false
       },
       err => {
         console.log(err)
@@ -98,8 +96,7 @@ export class GoalsCardComponent implements OnInit {
     this._patient.editSubGoals(this.patient._id, this.subGoalsForm.value)
     .subscribe(
       res => {        
-        this.userDashboard.removeSelectedCard()
-        alert("Gegevens zijn bijgewerkt, ververs de pagina om de bijgewerkte gegevens te zien.")
+        this.edit=false
         
       },
       err => {
@@ -109,12 +106,11 @@ export class GoalsCardComponent implements OnInit {
   }
   
   editExercises() {
-    console.log(this.exercisesForm.value)
+    this.patient.exercises = this.exercisesForm.value.exercises
     this._patient.editExercises(this.patient._id, this.exercisesForm.value)
     .subscribe(
       res => {        
-        this.userDashboard.removeSelectedCard()
-        alert("Gegevens zijn bijgewerkt, ververs de pagina om de bijgewerkte gegevens te zien.")
+        this.edit=false
         
       },
       err => {
