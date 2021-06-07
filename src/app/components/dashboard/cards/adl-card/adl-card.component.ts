@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { InformationService } from 'src/app/services/information.service';
 import { PatientService } from 'src/app/services/patient/patient.service';
 import { ClientDashboardComponent } from '../../client-dashboard/client-dashboard.component';
+import { DashboardComponent } from '../../dashboard.component';
 import { UserDashboardComponent } from '../../user-dashboard/user-dashboard.component';
 
 @Component({
@@ -19,9 +20,12 @@ export class AdlCardComponent implements OnInit {
   editForm!: any;
   edit = false;
 
+  usertype! : any
+
 
 
   constructor(private userDashboard: UserDashboardComponent,
+    private dashboard : DashboardComponent,
     private clientDashboard: ClientDashboardComponent,
     private _info: InformationService,
     private fb: FormBuilder,
@@ -29,6 +33,7 @@ export class AdlCardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.usertype = this.dashboard.usertype
     this._info.getADL()
     .subscribe(
       res => this.adls = res,
